@@ -2,8 +2,8 @@
 import os
 
 
-WEBSITE_INFO = {"website_name": u"北京林业大学在线评测系统",
-                "website_name_shortcut": u"BjfuOnlineJudge",
+WEBSITE_INFO = {"website_name": u"好好学习，天天 AC",
+                "website_name_shortcut": u"DayDayAc",
                 "website_footer": u"北京林业大学大学信息学院 <a href=\"http://www.miibeian.gov.cn/\">京ICP备233333号-1</a>",
                 # url结尾没有/
                 "url": u"http://your-domain-or-ip.com"}

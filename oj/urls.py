@@ -115,8 +115,12 @@ urlpatterns = [
     url(r'^group/(?P<group_id>\d+)/applications/$', "group.views.application_list_page", name="group_application_page"),
     url(r'^group/application/(?P<request_id>\d+)/$', "group.views.application_page", name="group_application"),
 
-    url(r'^about/$', TemplateView.as_view(template_name="utils/about.html"), name="about_page"),
+    url(r'^bjfuacm/$', TemplateView.as_view(template_name="utils/bjfuacm.html"), name="bjfuacm_page"),
+    url(r'^members/$', TemplateView.as_view(template_name="utils/members.html"), name="members_page"),
+    url(r'^icpc/$', TemplateView.as_view(template_name="utils/icpc.html"), name="icpc_page"),
     url(r'^help/$', TemplateView.as_view(template_name="utils/help.html"), name="help_page"),
+    url(r'^awards/$', TemplateView.as_view(template_name="utils/awards.html"), name="awards_page"),
+    url(r'^acmer/$', TemplateView.as_view(template_name="utils/acmer.html"), name="acmer_page"),
 
     url(r'^api/submission/share/$', SubmissionShareAPIView.as_view(), name="submission_share_api"),
 
