@@ -76,9 +76,9 @@
                 </td>
                 <td>
                     {% if item.accepted_answer_time != None %}
-                    {{ item.info }}Byte
+                        {{ item.info }}Byte
                     {% else %}
-                    --
+                        --
                     {% endif %}
                 </td>
                 <td class="alert-{{ item.result|translate_result_class }}">

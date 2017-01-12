@@ -272,6 +272,12 @@ def submission_list_page(request, page=1):
     submissions = submissions.values("id", "user_id", "info", "problem_id", "result", "create_time",
                                      "accepted_answer_time", "language").order_by("-create_time")
 
+    for submission in submissions:
+        if submission.result in [judge_result["compile_error"], judge_result["system_error"], judge_result["waiting"]]:
+            submission.info = None
+        else:
+            submission.info = json.loads(submission.info)['memory']
+
     language = request.GET.get("language", None)
     if language:
         submissions = submissions.filter(language=int(language))
