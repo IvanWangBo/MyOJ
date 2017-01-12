@@ -28,6 +28,7 @@
                     </div>
                 </th>
                 <th>运行时间</th>
+                <th>运行内存</th>
                 <th>
                     <div class="dropdown">
                         <a href="#" class="dropdown-toggle" id="resultFilter" data-toggle="dropdown"
@@ -69,6 +70,13 @@
                 <td>
                     {% if item.accepted_answer_time != None %}
                     {{ item.accepted_answer_time }}ms
+                    {% else %}
+                    --
+                    {% endif %}
+                </td>
+                <td>
+                    {% if item.accepted_answer_time != None %}
+                    {{ item.info.memory }}Byte
                     {% else %}
                     --
                     {% endif %}
