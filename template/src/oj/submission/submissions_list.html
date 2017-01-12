@@ -76,7 +76,7 @@
                 </td>
                 <td>
                     {% if item.accepted_answer_time != None %}
-                        {{ item.info }}Byte
+                        {{ item.info|get_memory }}Byte
                     {% else %}
                         --
                     {% endif %}
