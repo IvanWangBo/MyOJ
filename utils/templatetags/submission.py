@@ -30,7 +30,7 @@ def get_memory(value):
         memory = json.loads(value)['memory']
         return memory
     except:
-        return type(value)
+        return value
 
 def translate_language(value):
     return {1: "C", 2: "C++", 3: "Java"}[value]
