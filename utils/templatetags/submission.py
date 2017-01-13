@@ -27,7 +27,7 @@ def translate_signal(value):
 
 def get_memory(value):
     try:
-        memory = json.loads(value)[0]['memory']
+        memory = json.loads(value)[0]['memory'] / 1024 / 1024
         return memory
     except:
         return '-'
