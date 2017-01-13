@@ -29,6 +29,7 @@
                 </th>
                 <th>运行时间</th>
                 <th>运行内存</th>
+                <th>代码长度</th>
                 <th>
                     <div class="dropdown">
                         <a href="#" class="dropdown-toggle" id="resultFilter" data-toggle="dropdown"
@@ -80,6 +81,9 @@
                     {% else %}
                         --
                     {% endif %}
+                </td>
+                <td>
+                    {{ item.code|get_code_length }} Byte
                 </td>
                 <td class="alert-{{ item.result|translate_result_class }}">
                     <strong>{{ item.result|translate_result }}</strong>

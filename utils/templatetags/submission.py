@@ -32,6 +32,13 @@ def get_memory(value):
     except:
         return '-'
 
+def get_code_length(value):
+    try:
+        length = len(value)
+        return length
+    except:
+        return '-'
+
 def translate_language(value):
     return {1: "C", 2: "C++", 3: "Java"}[value]
 
@@ -50,3 +57,4 @@ register.filter("translate_language", translate_language)
 register.filter("translate_result_class", translate_result_class)
 register.filter("translate_signal", translate_signal)
 register.filter("get_memory", get_memory)
+register.filter("get_code_length", get_code_length)
