@@ -269,7 +269,7 @@ def submission_list_page(request, page=1):
         else:
             submissions = Submission.objects.filter(user_id=request.user.id, contest_id__isnull=True)
 
-    submissions = submissions.values("id", "user_id", "problem_id", "result", "create_time",
+    submissions = submissions.values("id", "user_id", "info", "problem_id", "result", "create_time",
                                      "accepted_answer_time", "language").order_by("-create_time")
 
     language = request.GET.get("language", None)
