@@ -27,10 +27,10 @@ def translate_signal(value):
 
 def get_memory(value):
     try:
-        memory = json.loads(value)['memory']
+        memory = json.loads(value)[0]['memory']
         return memory
     except:
-        return value
+        return '-'
 
 def translate_language(value):
     return {1: "C", 2: "C++", 3: "Java"}[value]
