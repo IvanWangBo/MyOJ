@@ -104,8 +104,8 @@ require(["jquery", "avalon", "editor", "uploader", "bsAlert", "csrfToken", "date
                 if (!data.code) {
                     var admin_type = data.data.admin_type;
                     if (data.data.admin_type == 1) {
-                        vm.isGlobal = false;
-                        vm.showGlobalViewRadio = false;
+                        vm.isGlobal = true;
+                        vm.showGlobalViewRadio = true;
                     }
                 }
                 $.ajax({
