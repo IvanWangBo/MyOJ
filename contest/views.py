@@ -16,7 +16,7 @@ from rest_framework.views import APIView
 
 from utils.shortcuts import (serializer_invalid_response, error_response,
                              success_response, paginate, error_page, paginate_data)
-from account.models import SUPER_ADMIN, ADMIN, User
+from account.models import SUPER_ADMIN, User
 from account.decorators import login_required, super_admin_required
 from group.models import Group, AdminGroupRelation, UserGroupRelation
 from utils.cache import get_cache_redis
@@ -48,7 +48,7 @@ class ContestAdminAPIView(APIView):
             # 2 即为是有密码的公开赛(PASSWORD_PUBLIC_CONTEST)
             # 此时为有密码的公开赛，并且此时只能超级管理员才有权限此创建比赛
             if data["contest_type"] in [PUBLIC_CONTEST, PASSWORD_PROTECTED_CONTEST]:
-                if request.user.admin_type not in [SUPER_ADMIN, ADMIN]:
+                if request.user.admin_type != SUPER_ADMIN:
                     return error_response(u"只有管理员才可创建公开赛")
 
             if data["contest_type"] in [PASSWORD_PROTECTED_CONTEST, PASSWORD_PROTECTED_GROUP_CONTEST]:

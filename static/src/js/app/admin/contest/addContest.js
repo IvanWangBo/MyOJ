@@ -104,8 +104,8 @@ require(["jquery", "avalon", "editor", "uploader", "bsAlert", "csrfToken", "date
                 if (!data.code) {
                     var admin_type = data.data.admin_type;
                     if (data.data.admin_type == 1) {
-                        vm.isGlobal = true;
-                        vm.showGlobalViewRadio = true;
+                        vm.isGlobal = false;
+                        vm.showGlobalViewRadio = false;
                     }
                 }
                 $.ajax({
@@ -115,7 +115,7 @@ require(["jquery", "avalon", "editor", "uploader", "bsAlert", "csrfToken", "date
                     success: function (data) {
                         if (!data.code) {
                             if (!data.data.length) {
-                                if (admin_type == 0)
+                                if (admin_type == 1)
                                     bsAlert("您的用户权限只能创建小组内比赛，但是您还没有创建过小组");
                                 return;
                             }
