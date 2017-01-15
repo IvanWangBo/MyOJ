@@ -17,7 +17,7 @@ from rest_framework.views import APIView
 from utils.shortcuts import (serializer_invalid_response, error_response,
                              success_response, paginate, error_page, paginate_data)
 from account.models import SUPER_ADMIN, ADMIN, User
-from account.decorators import login_required, super_admin_required
+from account.decorators import login_required, admin_required
 from group.models import Group, AdminGroupRelation, UserGroupRelation
 from utils.cache import get_cache_redis
 from submission.models import Submission
@@ -294,7 +294,7 @@ class ContestProblemAdminAPIView(APIView):
 
 
 class MakeContestProblemPublicAPIView(APIView):
-    @super_admin_required
+    @admin_required
     def post(self, request):
         problem_id = request.data.get("problem_id", -1)
         try:
