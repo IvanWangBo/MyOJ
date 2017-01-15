@@ -55,6 +55,11 @@ require(["jquery", "avalon", "csrfToken", "bsAlert", "bootstrap"], function ($, 
                 children: [{name: "主页", hash: "#index/index"}]
             },
             {
+                name: "题目管理",
+                children: [{name: "题目列表", hash: "#problem/problem_list"},
+                    {name: "创建题目", hash: "#problem/add_problem"}]
+            },
+            {
                 name: "比赛管理",
                 children: [{name: "比赛列表", hash: "#contest/contest_list"},
                     {name: "创建比赛", hash: "#contest/add_contest"}]
