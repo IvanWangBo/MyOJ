@@ -73,7 +73,7 @@ class ProblemAdminAPIView(APIView):
             return None
         return hashlib.md5(code.encode("utf-8")).hexdigest()
 
-    @super_admin_required
+    @admin_required
     def post(self, request):
         """
         题目发布json api接口
