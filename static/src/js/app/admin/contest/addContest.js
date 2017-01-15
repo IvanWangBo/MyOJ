@@ -115,7 +115,7 @@ require(["jquery", "avalon", "editor", "uploader", "bsAlert", "csrfToken", "date
                     success: function (data) {
                         if (!data.code) {
                             if (!data.data.length) {
-                                if (admin_type != 2)
+                                if (admin_type == 0)
                                     bsAlert("您的用户权限只能创建小组内比赛，但是您还没有创建过小组");
                                 return;
                             }
