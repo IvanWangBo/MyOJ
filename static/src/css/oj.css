@@ -110,9 +110,12 @@ li.problem-tag {
 }
 
 .rank .first-achieved{
-    background: #41cc47;
+    background: #32f456;
 }
 
+.has_accept{
+    background-color: #abffb8;
+}
 
 .avatar-item{
     padding-top: 7.5px;

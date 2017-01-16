@@ -38,10 +38,10 @@ def get_submission_class(rank, problem):
         return ""
     else:
         submission = submission_info[str(problem.id)]
-        if submission["is_ac"]:
-            _class = "alert-success"
-            if submission["is_first_ac"]:
-                _class += " first-achieved"
+        if submission["is_ac"] and submission["is_first_ac"]:
+            _class = "first-achieved"
+        elif submission["is_ac"]:
+            _class = "has_accept"
         else:
             _class = "alert-danger"
         return _class
