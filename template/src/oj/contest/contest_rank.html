@@ -62,7 +62,13 @@
                         <tbody class="rank">
                         {% for item in rank %}
                             <tr>
-                                <th class="text-center" scope="row">{% if item.rank_number %}{{ item.rank_number }}{% else %}-{% endif %}</th>
+                                <th class="text-center{% get_medal_class item rank %}" scope="row">
+                                    {% if item.rank_number %}
+                                        {{ item.rank_number }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </th>
                                 <td>
                                 <a href="/contest/{{ contest.id }}/submissions/?user_id={{ item.user__id }}">
                                     {{ item.user__username }}

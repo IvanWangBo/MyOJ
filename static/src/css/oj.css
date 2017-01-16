@@ -138,3 +138,15 @@ li.problem-tag {
     padding: 0!important;
     margin: 0!important;
 }
+
+.gold{
+    background-color: #feff3c;
+}
+
+.silver{
+    background-color: #daf5ff;
+}
+
+.bronze{
+    background-color: #ff8f14;
+}

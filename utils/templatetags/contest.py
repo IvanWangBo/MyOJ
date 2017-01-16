@@ -32,6 +32,25 @@ def get_the_formatted_time(seconds):
     return str(hour) + ":" + str(minute) + ":" + str(second)
 
 
+def get_medal_class(item, rank):
+    info = json.loads(rank)
+    number = len(info)
+    try:
+        item_number = json.loads(item)[0]['rank_number']
+    except:
+        item_number = 0
+    if item_number == 0:
+        return ''
+    elif item_number <= number * 0.1:
+        return ' gold'
+    elif item_number <= number * 0.3:
+        return ' silver'
+    elif item_number <= number * 0.6:
+        return ' bronze'
+    else:
+        return ''
+
+
 def get_submission_class(rank, problem):
     submission_info = json.loads(rank["submission_info"])
     if str(problem.id) not in submission_info:
@@ -69,5 +88,5 @@ register.filter("contest_status", get_contest_status)
 register.filter("contest_status_color", get_contest_status_color)
 register.filter("format_seconds", get_the_formatted_time)
 register.simple_tag(get_submission_class, name="get_submission_class")
+register.simple_tag(get_medal_class, name="get_medal_class")
 register.simple_tag(get_submission_content, name="get_submission_content")
-
