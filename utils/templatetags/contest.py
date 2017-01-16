@@ -43,7 +43,7 @@ def get_medal_class(item, rank):
         return ' ' + rank
 
     try:
-        item_number = json.loads(item)
+        item_number = json.loads(item["rank"])
     except:
         item_number = 0
 
