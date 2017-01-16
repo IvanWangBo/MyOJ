@@ -42,12 +42,30 @@ def get_medal_class(item, max_number):
 
     if item_number == 0:
         return ' no_medal'
-    elif number <= 10:
+    elif number <= 5:
         if item_number == 1:
             return ' gold'
         elif item_number == 2:
             return ' silver'
         elif item_number == 3:
+            return ' bronze'
+        else:
+            return ' no_medal'
+    elif number <= 7:
+        if item_number == 1:
+            return ' gold'
+        elif item_number == 2:
+            return ' silver'
+        elif item_number == 3 or item_number == 4:
+            return ' bronze'
+        else:
+            return ' no_medal'
+    elif number <= 10:
+        if item_number == 1:
+            return ' gold'
+        elif item_number == 2 or item_number == 3:
+            return ' silver'
+        elif item_number == 4 or item_number == 5 or item_number == 6:
             return ' bronze'
         else:
             return ' no_medal'
