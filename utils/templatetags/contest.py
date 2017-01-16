@@ -33,14 +33,14 @@ def get_the_formatted_time(seconds):
 
 
 def get_medal_class(item, rank):
+    #try:
+    #    info = json.loads(rank)
+    #except:
+    #    return rank
     try:
-        info = json.loads(rank)
+        number = len(rank)
     except:
-        return rank
-    try:
-        number = len(info)
-    except:
-        return 'number'
+        return ' ' + rank
     try:
         item_number = json.loads(item)[0]['rank_number']
     except:
