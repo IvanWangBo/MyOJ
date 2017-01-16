@@ -41,20 +41,23 @@ def get_medal_class(item, rank):
         number = len(rank)
     except:
         return ' ' + rank
+
     try:
-        item_number = json.loads(item)[0]['rank_number']
+        item_number = json.loads(item)
     except:
         item_number = 0
-    if item_number == 0:
-        return ''
-    elif item_number <= number * 0.1:
-        return ' gold'
-    elif item_number <= number * 0.3:
-        return ' silver'
-    elif item_number <= number * 0.6:
-        return ' bronze'
-    else:
-        return ' %s %s' % (number, item_number)
+
+    return ' %s %s' % (number, item_number)
+    #if item_number == 0:
+    #    return item_number
+    #elif item_number <= number * 0.1:
+    #    return ' gold'
+    #elif item_number <= number * 0.3:
+    #    return ' silver'
+    #elif item_number <= number * 0.6:
+    #    return ' bronze'
+    #else:
+    #    return ' %s %s' % (number, item_number)
 
 
 def get_submission_class(rank, problem):
