@@ -54,7 +54,7 @@ def get_medal_class(item, rank):
     elif item_number <= number * 0.6:
         return ' bronze'
     else:
-        return ''
+        return ' %s %s' % (number, item_number)
 
 
 def get_submission_class(rank, problem):
