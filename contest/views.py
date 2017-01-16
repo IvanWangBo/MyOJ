@@ -483,13 +483,13 @@ def contest_rank_page(request, contest_id):
     contest_problems = ContestProblem.objects.filter(contest=contest, visible=True).order_by("sort_index")
 
     force_real_time_rank = False
-    max_number_cache_key = str(contest_id) + '_max_number'
-    redis = get_cache_redis()
-    max_number = redis.get(max_number_cache_key)
-    if not max_number:
-        max_number = _get_max_number(contest_id)
-        redis.set(max_number_cache_key, max_number)
-    #max_number = _get_max_number(contest_id)
+    #max_number_cache_key = str(contest_id) + '_max_number'
+    #redis = get_cache_redis()
+    #max_number = redis.get(max_number_cache_key)
+    #if not max_number:
+        #max_number = _get_max_number(contest_id)
+        #redis.set(max_number_cache_key, max_number)
+    max_number = _get_max_number(contest_id)
     if request.GET.get("force_real_time_rank") == "true" and (request.user.admin_type == SUPER_ADMIN or request.user == contest.created_by):
         rank = _get_rank(contest_id)
         force_real_time_rank = True
