@@ -43,11 +43,11 @@ def get_medal_class(item, rank):
         return ' ' + rank
 
     try:
-        item_number = json.loads(item["rank"])
+        item_number = item["rank_number"]
     except:
         item_number = 0
 
-    return ' %s %s' % (number, item)
+    return ' %s %s %s' % (number, item, item_number)
     #if item_number == 0:
     #    return item_number
     #elif item_number <= number * 0.1:
