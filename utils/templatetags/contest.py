@@ -47,7 +47,7 @@ def get_medal_class(item, rank):
     except:
         item_number = 0
 
-    return ' %s %s' % (number, item_number)
+    return ' %s %s' % (number, item)
     #if item_number == 0:
     #    return item_number
     #elif item_number <= number * 0.1:
