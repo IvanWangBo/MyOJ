@@ -47,17 +47,25 @@ def get_medal_class(item, rank):
     except:
         item_number = 0
 
-    return ' %s %s %s' % (number, item, item_number)
-    #if item_number == 0:
-    #    return item_number
-    #elif item_number <= number * 0.1:
-    #    return ' gold'
-    #elif item_number <= number * 0.3:
-    #    return ' silver'
-    #elif item_number <= number * 0.6:
-    #    return ' bronze'
-    #else:
-    #    return ' %s %s' % (number, item_number)
+    if item_number == 0:
+        return ''
+    elif number <= 10:
+        if item_number == 1:
+            return ' gold'
+        elif item_number == 2:
+            return ' silver'
+        elif item_number == 3:
+            return ' bronze'
+        else:
+            return ' no_medal'
+    elif item_number * 1.0 <= number * 0.1:
+        return ' gold'
+    elif item_number * 1.0 <= number * 0.3:
+        return ' silver'
+    elif item_number * 1.0 <= number * 0.6:
+        return ' bronze'
+    else:
+        return ' no_medal'
 
 
 def get_submission_class(rank, problem):
