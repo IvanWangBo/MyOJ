@@ -467,8 +467,7 @@ def _get_max_number(contest_id):
     rank = ContestRank.objects.filter(contest_id=contest_id). \
         select_related("user"). \
         order_by("-total_ac_number", "total_time"). \
-        values("id", "user__id", "user__username", "user__real_name", "user__userprofile__student_id",
-               "contest_id", "submission_info", "total_submission_number", "total_ac_number", "total_time")
+        values("user__real_name", "total_ac_number")
     max_number = 0
     for item in rank:
         # 只有有ac的题目而且不是打星的队伍才参与排名
