@@ -32,15 +32,8 @@ def get_the_formatted_time(seconds):
     return str(hour) + ":" + str(minute) + ":" + str(second)
 
 
-def get_medal_class(item, rank):
-    #try:
-    #    info = json.loads(rank)
-    #except:
-    #    return rank
-    try:
-        number = len(rank)
-    except:
-        return ' ' + rank
+def get_medal_class(item, max_number):
+    number = max_number
 
     try:
         item_number = item["rank_number"]
@@ -48,7 +41,7 @@ def get_medal_class(item, rank):
         item_number = 0
 
     if item_number == 0:
-        return ''
+        return ' no_medal'
     elif number <= 10:
         if item_number == 1:
             return ' gold'
