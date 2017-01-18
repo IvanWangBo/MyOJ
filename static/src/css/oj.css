@@ -110,9 +110,12 @@ li.problem-tag {
 }
 
 .rank .first-achieved{
-    background: #33CC99;
+    background: #32f456;
 }
 
+.has_accept{
+    background-color: #ceffd7;
+}
 
 .avatar-item{
     padding-top: 7.5px;
@@ -134,4 +137,20 @@ li.problem-tag {
     display: inline!important;
     padding: 0!important;
     margin: 0!important;
+}
+
+.gold{
+    background-color: #feff3c;
+}
+
+.silver{
+    background-color: #e0e0e0;
+}
+
+.bronze{
+    background-color: #ff8f14;
+}
+
+.no_medal{
+    background-color: #ffffff;
 }

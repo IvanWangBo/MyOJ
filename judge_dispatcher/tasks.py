@@ -169,12 +169,12 @@ class JudgeDispatcher(object):
                 problems_status["contest_problems"] = {}
 
             # 增加用户提交计数器
-            user.userprofile.add_submission_number()
+            #user.userprofile.add_submission_number()
 
             # 之前状态不是ac, 现在是ac了 需要更新用户ac题目数量计数器,这里需要判重
-            if problems_status["contest_problems"].get(str(contest_problem.id), -1) != 1 and \
-                            self.submission.result == result["accepted"]:
-                user.userprofile.add_accepted_problem_number()
+            #if problems_status["contest_problems"].get(str(contest_problem.id), -1) != 1 and \
+            #                self.submission.result == result["accepted"]:
+            #    user.userprofile.add_accepted_problem_number()
 
             if self.submission.result == result["accepted"]:
                 contest_problem.add_ac_number()

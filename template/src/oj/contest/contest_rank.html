@@ -2,6 +2,21 @@
 {% block title %}
     比赛排名
 {% endblock %}
+{% block css_block %}
+    <style type="text/css">
+        #rank_head{
+            background-color: #000459;
+            color: #FFFFFF !important;
+        }
+        .a_css{
+            color: #ffffff;
+        }
+        .a_css:hover{
+            color: #fffe93;
+        }
+        table tr:nth-child(2n){background-color: #D2E9FF}
+    </style>
+{% endblock %}
 {% block body %}
     {% load contest %}
     <div class="container main">
@@ -32,14 +47,14 @@
                 {% if rank %}
                     <table class="table table-bordered table-condensed text-center">
                         <thead>
-                        <tr>
-                            <th>#</th>
+                        <tr id="rank_head">
+                            <th class="text-center">排名</th>
                             <th class="text-center">用户名</th>
-                            <th class="text-center">AC / 总提交</th>
-                            <th class="text-center">用时 + 罚时</th>
+                            <th class="text-center">解决题数</th>
+                            <th class="text-center">总用时</th>
                             {% for item in contest_problems %}
                                 <th class="text-center">
-                                    <a href="/contest/{{ contest.id }}/submissions/?problem_id={{ item.id }}">{{ item.sort_index }}</a>
+                                    <a class="a_css" href="/contest/{{ contest.id }}/submissions/?problem_id={{ item.id }}">{{ item.sort_index }}</a>
                                 </th>
                             {% endfor %}
                         </tr>
@@ -47,7 +62,13 @@
                         <tbody class="rank">
                         {% for item in rank %}
                             <tr>
-                                <th scope="row">{% if item.rank_number %}{{ item.rank_number }}{% else %}-{% endif %}</th>
+                                <th class="text-center{% get_medal_class item max_number%}" scope="row">
+                                    {% if item.rank_number %}
+                                        {{ item.rank_number }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </th>
                                 <td>
                                 <a href="/contest/{{ contest.id }}/submissions/?user_id={{ item.user__id }}">
                                     {{ item.user__username }}
@@ -56,7 +77,7 @@
                                         （{{ item.user__real_name }}）
                                     {% endif %}
                                 </td>
-                                <td>{{ item.total_ac_number }} / {{ item.total_submission_number }}</td>
+                                <td>{{ item.total_ac_number }}</td>
                                 <td>{% if item.total_time %}{{ item.total_time|format_seconds }}{% else %}--{% endif %}</td>
                                 {% autoescape off %}
                                 {% for problem in contest_problems %}
