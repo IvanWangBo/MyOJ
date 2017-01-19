@@ -110,11 +110,14 @@ li.problem-tag {
 }
 
 .rank .first-achieved{
-    background: #32f456;
+    background: #558239;
+    color: #FFFFFF;
+    font-family: Consolas;
+    font-weight: bold;
 }
 
 .has_accept{
-    background-color: #ceffd7;
+    background-color: #c8deb7;
 }
 
 .avatar-item{
@@ -148,7 +151,7 @@ li.problem-tag {
 }
 
 .bronze{
-    background-color: #ff8f14;
+    background-color: #c36c20;
 }
 
 .no_medal{
