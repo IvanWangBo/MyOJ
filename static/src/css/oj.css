@@ -112,13 +112,17 @@ li.problem-tag {
 .rank .first-achieved{
     background: #558239;
     color: #FFFFFF;
-    font-family: Consolas;
+    font-family: monospace;
     font-weight: 900;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .has_accept{
     background-color: #c8deb7;
+}
+
+.has_not_accept{
+    background-color: #ec3c34;
 }
 
 .avatar-item{

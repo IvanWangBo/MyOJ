@@ -90,7 +90,7 @@ def get_submission_class(rank, problem):
         elif submission["is_ac"]:
             _class = "has_accept"
         else:
-            _class = "alert-danger"
+            _class = "has_not_accept"
         return _class
 
 
