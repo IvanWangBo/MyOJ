@@ -113,7 +113,8 @@ li.problem-tag {
     background: #558239;
     color: #FFFFFF;
     font-family: Consolas;
-    font-weight: bold;
+    font-weight: 900;
+    font-size: 20px;
 }
 
 .has_accept{
