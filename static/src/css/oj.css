@@ -122,7 +122,8 @@ li.problem-tag {
 }
 
 .has_not_accept{
-    background-color: #ec3c34;
+    color: #FFFFFF;
+    background-color: #f38780;
 }
 
 .avatar-item{
@@ -156,7 +157,7 @@ li.problem-tag {
 }
 
 .bronze{
-    background-color: #c36c20;
+    background-color: #ff8f14;
 }
 
 .no_medal{
