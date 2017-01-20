@@ -118,12 +118,12 @@ li.problem-tag {
 }
 
 .has_accept{
-    background-color: #98FB98;
+    background-color: #c8deb7;
 }
 
 .has_not_accept{
     color: #FFFFFF;
-    background-color: #FFC0CB;
+    background-color: #f38780;
 }
 
 .avatar-item{
