@@ -11,6 +11,8 @@
 <script type="text/javascript">
     var inputs=document.getElementById('inputs');
     var count = 2;
+    con = get_content(count);
+    inputs.innerHTML = con;
     function add(){
         count++;
         content = get_content(count);
