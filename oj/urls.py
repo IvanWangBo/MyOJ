@@ -122,6 +122,7 @@ urlpatterns = [
     url(r'^awards/$', TemplateView.as_view(template_name="utils/awards.html"), name="awards_page"),
     url(r'^acmer/$', TemplateView.as_view(template_name="utils/acmer.html"), name="acmer_page"),
     url(r'^evening/$', TemplateView.as_view(template_name="utils/evening.html"), name="evening_page"),
+    url(r'^follower/$', TemplateView.as_view(template_name="oj/follower.html"), name="follower"),
 
     url(r'^api/submission/share/$', SubmissionShareAPIView.as_view(), name="submission_share_api"),
 

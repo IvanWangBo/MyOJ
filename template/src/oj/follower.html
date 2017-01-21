@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>孙悦小宝宝的小红花</title>
+</head>
+<body>
+<input type="button" value="奖励小花花" onclick="add(this)">
+<input type="button" value="扣除小花花" onclick="del(this)">
+<div id="inputs" ></div>
+<script type="text/javascript">
+    var inputs=document.getElementById('inputs');
+    var count = 2;
+    function add(){
+        count++;
+        content = get_content(count);
+        inputs.innerHTML = content;
+    }
+    function del(){
+        count--;
+        content = get_content(count);
+        inputs.innerHTML = content;
+    }
+    function get_content(count) {
+        str = '<img src=\"/static/img/follower.jpeg\" height=100 width=100>';
+        result = '';
+        for (var i = 0; i < count; i++) {
+            result += str;
+        }
+        return result;
+    }
+</script>
+</body>
+</html>
