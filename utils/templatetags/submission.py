@@ -40,8 +40,10 @@ def get_code_length(value):
         return '-'
 
 def translate_language(value):
-    return {1: "C", 2: "C++", 3: "Java"}[value]
+    return {1: "C", 2: "C++", 3: "Java", 4: "Python"}[value]
 
+def translate_language_mime(value):
+    return {1: "text/x-csrc", 2: "text/x-c++src", 3: "text/x-java", 4: "text/x-python"}[value]
 
 def translate_result_class(value):
     if value == 0:
@@ -58,3 +60,4 @@ register.filter("translate_result_class", translate_result_class)
 register.filter("translate_signal", translate_signal)
 register.filter("get_memory", get_memory)
 register.filter("get_code_length", get_code_length)
+register.filter("translate_language_mime", translate_language_mime)
