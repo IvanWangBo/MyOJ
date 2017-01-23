@@ -26,10 +26,12 @@ def get_the_formatted_time(seconds):
     if not seconds:
         return ""
     seconds = int(seconds)
-    hour = seconds / (60 * 60)
-    minute = (seconds - hour * 60 * 60) / 60
-    second = seconds - hour * 60 * 60 - minute * 60
-    return str(hour) + ":" + str(minute) + ":" + str(second)
+    minute = seconds / 60
+    return str(minute)
+    #hour = seconds / (60 * 60)
+    #minute = (seconds - hour * 60 * 60) / 60
+    #second = seconds - hour * 60 * 60 - minute * 60
+    #return str(hour) + ":" + str(minute) + ":" + str(second)
 
 
 def get_medal_class(item, max_number):
@@ -103,10 +105,12 @@ def get_submission_content(rank, problem):
         if submission["is_ac"]:
             r = get_the_formatted_time(submission["ac_time"])
             if submission["error_number"]:
-                r += "<br>（-" + str(submission["error_number"]) + "）"
+                r = str(submission["error_number"] + 1) + '/' + r
+            else:
+                r = '1/' + r
             return r
         else:
-            return "（-" + str(submission["error_number"]) + "）"
+            return str(submission["error_number"]) + "/-"
 
 
 from django import template
