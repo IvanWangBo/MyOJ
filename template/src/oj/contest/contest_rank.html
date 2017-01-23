@@ -1,6 +1,6 @@
 {% extends "oj_base.html" %}
 {% block title %}
-    比赛排名
+    {{ contest.title }}
 {% endblock %}
 {% block css_block %}
     <style type="text/css">
@@ -20,28 +20,6 @@
 {% endblock %}
 {% block body %}
     {% load contest %}
-    <div style="background-color:#000; height:35px;">
-        <div style="float:left; height:30px; ">
-            <table class="table table-bordered table-condensed text-center">
-                <tbody>
-                    <tr>
-                        <td bgcolor="#ffd700"> GOLD&nbsp;</td>
-                        <td bgcolor="#C0C0C0"> SILVER&nbsp;</td>
-                        <td bgcolor="#c08E55"> BRONZE&nbsp;</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div style="float:right;height:30px; padding-bottom:8px;">
-            <table class="table table-bordered table-condensed text-center">
-                <tbody>
-                    <tr>
-                        <td bgcolor="#008800" style="color:#FFFFFF;">First to solve problem&nbsp;</td>
-                        <td bgcolor="#99FF99"> Solved problem &nbsp;</td>
-                        <td bgcolor="#FF9999"> Attempted problem&nbsp;</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
     <div class="container main">
 
         <ul class="nav nav-tabs nav-tabs-google contest-tab">
@@ -68,6 +46,28 @@
                         此提示仅管理员可见。</div>
                 {% endif %}
                 {% if rank %}
+                    <div style="background-color:#ffffff; height:35px;">
+                        <div style="float:left; height:30px; ">
+                            <table class="table table-bordered table-condensed text-center">
+                                <tbody>
+                                <tr>
+                                    <td bgcolor="#ffd700"> GOLD&nbsp;</td>
+                                    <td bgcolor="#C0C0C0"> SILVER&nbsp;</td>
+                                    <td bgcolor="#c08E55"> BRONZE&nbsp;</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="float:right;height:30px; padding-bottom:8px;">
+                            <table class="table table-bordered table-condensed text-center">
+                                <tbody>
+                                <tr>
+                                    <td bgcolor="#008800" style="color:#FFFFFF;">First to solve problem&nbsp;</td>
+                                    <td bgcolor="#99FF99"> Solved problem &nbsp;</td>
+                                    <td bgcolor="#FF9999"> Attempted problem&nbsp;</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     <table class="table table-bordered table-condensed text-center">
                         <thead>
                         <tr id="rank_head">
