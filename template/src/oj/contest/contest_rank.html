@@ -1,6 +1,6 @@
 {% extends "oj_base.html" %}
 {% block title %}
-    {{ contest.title }}
+    比赛排名
 {% endblock %}
 {% block css_block %}
     <style type="text/css">
@@ -39,7 +39,7 @@
 
         <div class="row">
             <div class="col-lg-12 table-responsive">
-                <h2 class="text-center">排名({% if contest.real_time_rank %}实时{% else %}已封榜{% endif %})
+                <h2 class="text-center">{{ contest.title }}({% if contest.real_time_rank %}实时{% else %}已封榜{% endif %})
                 </h2>
                 {% if force_real_time_rank %}
                     <div class="alert alert-warning" role="alert">当前您使用了force_real_time_rank=true参数, 将强制显示实时结果。
@@ -61,9 +61,9 @@
                             <table class="table table-bordered table-condensed text-center">
                                 <tbody>
                                 <tr>
-                                    <td bgcolor="#008800" style="color:#FFFFFF;">First to solve problem&nbsp;</td>
+                                    <td bgcolor="#008800" style="color:#FFFFFF;"> First to solve problem&nbsp;</td>
                                     <td bgcolor="#99FF99"> Solved problem &nbsp;</td>
-                                    <td bgcolor="#FF9999"> Attempted problem&nbsp;</td></tr>
+                                    <td bgcolor="#FF9999" style="color:#FFFFFF;"> Attempted problem&nbsp;</td></tr>
                                 </tbody>
                             </table>
                         </div>
