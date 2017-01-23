@@ -124,23 +124,35 @@ class JudgeDispatcher(object):
             # 更新普通题目的计数器
             problem.add_submission_number()
 
+            user = User.objects.get(id=self.submission.user_id)
+            problems_status = user.problems_status
+            user.userprofile.add_submission_number()
+
+            if "problems" not in problems_status:
+                problems_status["problems"] = {}
+                user = User.objects.select_for_update().get(id=self.submission.user_id)
+            elif problems_status["problems"].get(str(problem.id), -1) == 1:
+                return
+            elif problems_status["problems"].get(str(problem.id), -1) != 1:
+                user = User.objects.select_for_update().get(id=self.submission.user_id)
+
             # 更新用户做题状态
-            user = User.objects.select_for_update().get(id=self.submission.user_id)
+            # user = User.objects.select_for_update().get(id=self.submission.user_id)
 
             problems_status = user.problems_status
             if "problems" not in problems_status:
                 problems_status["problems"] = {}
 
             # 增加用户提交计数器
-            user.userprofile.add_submission_number()
+            #user.userprofile.add_submission_number()
 
             # 之前状态不是ac, 现在是ac了 需要更新用户ac题目数量计数器,这里需要判重
             if problems_status["problems"].get(str(problem.id), -1) != 1 and self.submission.result == result["accepted"]:
                 user.userprofile.add_accepted_problem_number()
 
             # 之前状态是ac, 现在不是ac了 需要用户ac题目数量计数器-1, 否则上一个逻辑胡重复增加ac计数器
-            if problems_status["problems"].get(str(problem.id), -1) == 1 and self.submission.result != result["accepted"]:
-                user.userprofile.minus_accepted_problem_number()
+            #if problems_status["problems"].get(str(problem.id), -1) == 1 and self.submission.result != result["accepted"]:
+            #    user.userprofile.minus_accepted_problem_number()
 
             if self.submission.result == result["accepted"]:
                 problem.add_ac_number()
