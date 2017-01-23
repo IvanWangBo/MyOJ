@@ -510,7 +510,8 @@ def contest_rank_page(request, contest_id):
                 r.set(cache_key, json.dumps([dict(item) for item in rank]))
 
     return render(request, "oj/contest/contest_rank.html",
-                  {"rank": rank, "contest": contest,
+                  {"rank": rank,
+                   "contest": contest,
                    "max_number": max_number,
                    "contest_problems": contest_problems,
                    "auto_refresh": request.GET.get("auto_refresh", None) == "true",

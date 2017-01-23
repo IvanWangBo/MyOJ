@@ -112,6 +112,10 @@ def get_submission_content(rank, problem):
         else:
             return str(submission["error_number"]) + "/-"
 
+def get_problem_accepted_radio(problem):
+    if problem.total_submit_number:
+        return str(problem.total_accepted_number) + "/" + str(problem.total_submit_number)
+    return "0/0"
 
 from django import template
 
@@ -122,3 +126,4 @@ register.filter("format_seconds", get_the_formatted_time)
 register.simple_tag(get_submission_class, name="get_submission_class")
 register.simple_tag(get_medal_class, name="get_medal_class")
 register.simple_tag(get_submission_content, name="get_submission_content")
+register.filter("accepted_radio", get_problem_accepted_radio)

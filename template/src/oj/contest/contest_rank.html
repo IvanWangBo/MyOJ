@@ -111,6 +111,14 @@
                                 {% endautoescape %}
                             </tr>
                         {% endfor %}
+                        <tr>
+                            <th>统计</th><td>-</td><td>-</td>
+                            {% for item in contest_problems %}
+                                <td>
+                                    {{ item|accepted_radio }}
+                                </td>
+                            {% endfor %}
+                        </tr>
                         </tbody>
                     </table>
                     {% include "oj/contest/_contest_auto_refresh_check.html" %}
