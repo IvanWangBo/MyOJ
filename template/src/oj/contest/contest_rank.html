@@ -20,6 +20,28 @@
 {% endblock %}
 {% block body %}
     {% load contest %}
+    <div style="background-color:#000; height:35px;">
+        <div style="float:left; height:30px; ">
+            <table class="table table-bordered table-condensed text-center">
+                <tbody>
+                    <tr>
+                        <td bgcolor="#ffd700"> GOLD&nbsp;</td>
+                        <td bgcolor="#C0C0C0"> SILVER&nbsp;</td>
+                        <td bgcolor="#c08E55"> BRONZE&nbsp;</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="float:right;height:30px; padding-bottom:8px;">
+            <table class="table table-bordered table-condensed text-center">
+                <tbody>
+                    <tr>
+                        <td bgcolor="#008800" style="color:#FFFFFF;">First to solve problem&nbsp;</td>
+                        <td bgcolor="#99FF99"> Solved problem &nbsp;</td>
+                        <td bgcolor="#FF9999"> Attempted problem&nbsp;</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <div class="container main">
 
         <ul class="nav nav-tabs nav-tabs-google contest-tab">
@@ -71,9 +93,9 @@
                                     {% endif %}
                                 </th>
                                 <td>
-                                <a href="/contest/{{ contest.id }}/submissions/?user_id={{ item.user__id }}">
-                                    {{ item.user__username }}
-                                </a>
+                                    <a href="/contest/{{ contest.id }}/submissions/?user_id={{ item.user__id }}">
+                                        {{ item.user__username }}
+                                    </a>
                                     {% if show_real_name %}
                                         （{{ item.user__real_name }}）
                                     {% endif %}
@@ -81,11 +103,11 @@
                                 <td>{{ item.total_ac_number }}</td>
                                 <td>{% if item.total_time %}{{ item.total_time|format_seconds }}{% else %}--{% endif %}</td>
                                 {% autoescape off %}
-                                {% for problem in contest_problems %}
-                                    <td class="{% get_submission_class item problem %}">
-                                    {% get_submission_content item problem %}
-                                    </td>
-                                {% endfor %}
+                                    {% for problem in contest_problems %}
+                                        <td class="{% get_submission_class item problem %}">
+                                            {% get_submission_content item problem %}
+                                        </td>
+                                    {% endfor %}
                                 {% endautoescape %}
                             </tr>
                         {% endfor %}
