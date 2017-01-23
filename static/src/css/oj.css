@@ -112,6 +112,9 @@ li.problem-tag {
 .rank .first-achieved{
     background: #008300;
     color: #FFFFFF;
+    font-family: monospace;
+    font-weight: 900;
+    font-size: 14px;
 }
 
 .has_accept{
