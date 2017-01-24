@@ -10,7 +10,7 @@
 <div id="inputs" ></div>
 <script type="text/javascript">
     var inputs=document.getElementById('inputs');
-    var count = 4;
+    var count = 5;
     con = get_content(count);
     inputs.innerHTML = con;
     function add(){
@@ -24,7 +24,7 @@
         inputs.innerHTML = content;
     }
     function get_content(count) {
-        str = '<img src=\"/static/img/follower.jpeg\" height=100 width=100>';
+        str = '<img src=\"/static/img/follower.jpeg\" height=120 width=120>';
         result = '';
         for (var i = 0; i < count; i++) {
             result += str;
