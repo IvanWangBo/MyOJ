@@ -26,10 +26,12 @@ def get_the_formatted_time(seconds):
     if not seconds:
         return ""
     seconds = int(seconds)
-    hour = seconds / (60 * 60)
-    minute = (seconds - hour * 60 * 60) / 60
-    second = seconds - hour * 60 * 60 - minute * 60
-    return str(hour) + ":" + str(minute) + ":" + str(second)
+    minute = seconds / 60
+    return str(minute)
+    #hour = seconds / (60 * 60)
+    #minute = (seconds - hour * 60 * 60) / 60
+    #second = seconds - hour * 60 * 60 - minute * 60
+    #return str(hour) + ":" + str(minute) + ":" + str(second)
 
 
 def get_medal_class(item, max_number):
@@ -103,11 +105,17 @@ def get_submission_content(rank, problem):
         if submission["is_ac"]:
             r = get_the_formatted_time(submission["ac_time"])
             if submission["error_number"]:
-                r += "<br>（-" + str(submission["error_number"]) + "）"
+                r = str(submission["error_number"] + 1) + '/' + r
+            else:
+                r = '1/' + r
             return r
         else:
-            return "（-" + str(submission["error_number"]) + "）"
+            return str(submission["error_number"]) + "/-"
 
+def get_problem_accepted_radio(problem):
+    if problem.total_submit_number:
+        return str(problem.total_accepted_number) + "/" + str(problem.total_submit_number)
+    return "0/0"
 
 from django import template
 
@@ -118,3 +126,4 @@ register.filter("format_seconds", get_the_formatted_time)
 register.simple_tag(get_submission_class, name="get_submission_class")
 register.simple_tag(get_medal_class, name="get_medal_class")
 register.simple_tag(get_submission_content, name="get_submission_content")
+register.filter("accepted_radio", get_problem_accepted_radio)

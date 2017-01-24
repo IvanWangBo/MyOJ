@@ -110,20 +110,20 @@ li.problem-tag {
 }
 
 .rank .first-achieved{
-    background: #008000;
+    background: #008300;
     color: #FFFFFF;
     font-family: monospace;
     font-weight: 900;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .has_accept{
-    background-color: #c8deb7;
+    background-color: #99ff99;
 }
 
 .has_not_accept{
     color: #FFFFFF;
-    background-color: #f38780;
+    background-color: #ff9999;
 }
 
 .avatar-item{
@@ -157,7 +157,7 @@ li.problem-tag {
 }
 
 .bronze{
-    background-color: #FFA500;
+    background-color: #c08E55;
 }
 
 .no_medal{

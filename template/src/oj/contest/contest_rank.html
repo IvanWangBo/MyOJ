@@ -5,7 +5,7 @@
 {% block css_block %}
     <style type="text/css">
         #rank_head{
-            background-color: #1b3915;
+            background-color: #003200;
             color: #FFFFFF !important;
         }
         .a_css{
@@ -39,13 +39,35 @@
 
         <div class="row">
             <div class="col-lg-12 table-responsive">
-                <h2 class="text-center">排名({% if contest.real_time_rank %}实时{% else %}已封榜{% endif %})
+                <h2 class="text-center">{{ contest.title }}{% if contest.real_time_rank %}{% else %}(已封榜){% endif %}
                 </h2>
                 {% if force_real_time_rank %}
                     <div class="alert alert-warning" role="alert">当前您使用了force_real_time_rank=true参数, 将强制显示实时结果。
                         此提示仅管理员可见。</div>
                 {% endif %}
                 {% if rank %}
+                    <div style="background-color:#ffffff; height:35px;">
+                        <div style="float:left; height:30px; ">
+                            <table class="table table-bordered table-condensed text-center">
+                                <tbody>
+                                <tr>
+                                    <td bgcolor="#ffd700"> GOLD&nbsp;</td>
+                                    <td bgcolor="#C0C0C0"> SILVER&nbsp;</td>
+                                    <td bgcolor="#c08E55"> BRONZE&nbsp;</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="float:right;height:30px; padding-bottom:8px;">
+                            <table class="table table-bordered table-condensed text-center">
+                                <tbody>
+                                <tr>
+                                    <td bgcolor="#008800" style="color:#FFFFFF;"> First to solve problem&nbsp;</td>
+                                    <td bgcolor="#99FF99"> Solved problem &nbsp;</td>
+                                    <td bgcolor="#FF9999" style="color:#FFFFFF;"> Attempted problem&nbsp;</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     <table class="table table-bordered table-condensed text-center">
                         <thead>
                         <tr id="rank_head">
@@ -71,9 +93,9 @@
                                     {% endif %}
                                 </th>
                                 <td>
-                                <a href="/contest/{{ contest.id }}/submissions/?user_id={{ item.user__id }}">
-                                    {{ item.user__username }}
-                                </a>
+                                    <a href="/contest/{{ contest.id }}/submissions/?user_id={{ item.user__id }}">
+                                        {{ item.user__username }}
+                                    </a>
                                     {% if show_real_name %}
                                         （{{ item.user__real_name }}）
                                     {% endif %}
@@ -81,14 +103,22 @@
                                 <td>{{ item.total_ac_number }}</td>
                                 <td>{% if item.total_time %}{{ item.total_time|format_seconds }}{% else %}--{% endif %}</td>
                                 {% autoescape off %}
-                                {% for problem in contest_problems %}
-                                    <td class="{% get_submission_class item problem %}">
-                                    {% get_submission_content item problem %}
-                                    </td>
-                                {% endfor %}
+                                    {% for problem in contest_problems %}
+                                        <td class="{% get_submission_class item problem %}">
+                                            {% get_submission_content item problem %}
+                                        </td>
+                                    {% endfor %}
                                 {% endautoescape %}
                             </tr>
                         {% endfor %}
+                        <tr>
+                            <th class="text-center">统计</th><td>-</td><td>-</td><td>--</td>
+                            {% for item in contest_problems %}
+                                <td>
+                                    {{ item|accepted_radio }}
+                                </td>
+                            {% endfor %}
+                        </tr>
                         </tbody>
                     </table>
                     {% include "oj/contest/_contest_auto_refresh_check.html" %}
