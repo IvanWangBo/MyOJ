@@ -24,10 +24,15 @@
         inputs.innerHTML = content;
     }
     function get_content(count) {
-        str = '<img src=\"/static/img/follower.jpeg\" height=120 width=120>';
+        str_2 = '<img src=\"/static/img/timg.jpeg\" height=120 width=120>';
+        str_1 = '<img src=\"/static/img/follower.jpeg\" height=120 width=120>';
         result = '';
-        for (var i = 0; i < count; i++) {
-            result += str;
+
+        for (var i = 0; i < count / 7; i++) {
+            result += str_2;
+        }
+        for (var j = 0; j < count % 7; j++){
+            result += str_1;
         }
         return result;
     }
