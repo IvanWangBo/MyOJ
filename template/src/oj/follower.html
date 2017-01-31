@@ -27,10 +27,12 @@
         str_2 = '<img src=\"/static/img/timg.jpeg\" height=120 width=120>';
         str_1 = '<img src=\"/static/img/follower.jpeg\" height=120 width=120>';
         result = '';
+        juhua = count / 7;
 
-        for (var i = 0; i < count / 7; i++) {
+        for (var i = 0; i < Math.floor(count / 7); i++) {
             result += str_2;
         }
+        result += '<br>';
         for (var j = 0; j < count % 7; j++){
             result += str_1;
         }
