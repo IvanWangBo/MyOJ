@@ -2,6 +2,7 @@
     <h1>加入小组请求管理</h1>
     <table class="table table-striped">
         <tr>
+            <th><input type="checkbox" class="select-all"/> </th>
             <th>创建时间</th>
             <th>小组</th>
             <th>用户</th>
@@ -9,6 +10,7 @@
             <th></th>
         </tr>
         <tr ms-repeat="requestList">
+            <th><input type="checkbox" class="select"/> </th>
             <td>{{ el.create_time|date("yyyy-MM-dd HH:mm:ss")}}</td>
             <td>{{ el.group.name }}</td>
             <td>{{ el.user.username }}</td>
