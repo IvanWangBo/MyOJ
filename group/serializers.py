@@ -41,6 +41,7 @@ class JoinGroupRequestSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = JoinGroupRequest
+        fields = ['group', 'user']
 
 
 class GroupSerializer(serializers.ModelSerializer):
