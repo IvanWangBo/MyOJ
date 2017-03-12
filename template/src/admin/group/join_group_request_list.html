@@ -1,8 +1,12 @@
 <div ms-controller="requestList" class="col-md-9">
     <h1>加入小组请求管理</h1>
+    <div >
+        <button class="btn-sm btn-success" ms-click="processBatchRequest(null, true)">批量同意</button>
+        <button class="btn-sm btn-danger" ms-click="processBatchRequest(null, false)">批量拒绝</button>
+    </div>
     <table class="table table-striped">
         <tr>
-            <th><input type="checkbox" class="select-all"/> </th>
+            <th><input type="checkbox" ms-click="selectAll" ms-attr-checked="selectedAll"/>全选 </th>
             <th>创建时间</th>
             <th>小组</th>
             <th>用户</th>
@@ -10,8 +14,8 @@
             <th></th>
         </tr>
         <tr ms-repeat="requestList">
-            <th><input type="checkbox" class="select"/> </th>
-            <td>{{ el.create_time|date("yyyy-MM-dd HH:mm:ss")}}</td>
+            <td><input type="checkbox" class="select" ms-attr-value="el.id" ms-duplex="selected"/> </td>
+            <td>{{ el.create_time|date("yyyy-MM-dd HH:mm:ss") }}</td>
             <td>{{ el.group.name }}</td>
             <td>{{ el.user.username }}</td>
             <td>{{ el.message }}</td>
