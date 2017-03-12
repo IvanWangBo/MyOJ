@@ -7,11 +7,12 @@ require(["jquery", "avalon", "csrfToken", "bsAlert"], function ($, avalon, csrfT
             var vm = avalon.vmodels.requestList;
         }
         else {
-
             var vm = avalon.define({
                 $id: "requestList",
                 //通用变量
                 requestList: [],                 //  列表数据项
+                selected: [],                    //  复选框选中的项
+                selectedAll: false,              // 全选复选框
                 previousPage: 0,                 //  之前的页数
                 nextPage: 0,                     //   之后的页数
                 page: 1,                           //    当前页数
@@ -49,7 +50,23 @@ require(["jquery", "avalon", "csrfToken", "bsAlert"], function ($, avalon, csrfT
                             bsAlert(data.data);
                         }
                     })
-                }
+                },
+                processBatchRequest: function(request, status) {
+                    console.log('批量请求', request, status, vm.selected)
+                },
+                selectAll: function() {
+                    if (this.checked) {
+                        vm.selected = vm.requestList.map(function(el) { return el.id.toString() });
+                    } else {
+                        vm.selected.clear()
+                    }
+                },
+            });
+
+            vm.$watch("selected.length", function(n) {
+                console.log('on watch', n, vm.requestList.size(), vm.selected.size());
+                vm.selectedAll = n === vm.requestList.size()
+
             });
         }
 
@@ -70,6 +87,7 @@ require(["jquery", "avalon", "csrfToken", "bsAlert"], function ($, avalon, csrfT
                         vm.previousPage = data.data.previous_page;
                         vm.nextPage = data.data.next_page;
                         vm.page = page;
+                        vm.selectedList = []
                     }
                     else {
                         bsAlert(data.data);
