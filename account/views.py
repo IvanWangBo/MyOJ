@@ -257,9 +257,9 @@ class UserAdminAPIView(APIView):
         if keyword:
             user = user.filter(
                 Q(id=keyword) |
-                Q(username__contains=keyword) |
-                Q(real_name__contains=keyword) |
-                Q(email__contains=keyword)
+                Q(username__contains=keyword)# |
+                #Q(real_name__contains=keyword) |
+                #Q(email__contains=keyword)
             )
         return paginate(request, user, UserSerializer)
 
