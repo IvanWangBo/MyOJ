@@ -255,9 +255,12 @@ class UserAdminAPIView(APIView):
                 return error_response(u"参数错误")
         keyword = request.GET.get("keyword", None)
         if keyword:
-            user = user.filter(Q(username__contains=keyword) |
-                               Q(real_name__contains=keyword) |
-                               Q(email__contains=keyword))
+            user = user.filter(
+                Q(id=keyword) |
+                Q(username__contains=keyword)# |
+                #Q(real_name__contains=keyword) |
+                #Q(email__contains=keyword)
+            )
         return paginate(request, user, UserSerializer)
 
 
