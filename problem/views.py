@@ -421,6 +421,7 @@ def problem_list_page(request, page=1):
         problems = tag.problem_set.all().filter(visible=True)
 
     paginator = Paginator(problems, 40)
+    length = paginator.count
     try:
         current_page = paginator.page(int(page))
     except Exception:
@@ -446,4 +447,4 @@ def problem_list_page(request, page=1):
                   {"problems": current_page, "page": int(page),
                    "previous_page": previous_page, "next_page": next_page,
                    "keyword": keyword, "tag": tag_text,
-                   "tags": tags, "difficulty_order": difficulty_order})
+                   "tags": tags, "difficulty_order": difficulty_order, "length": length})
