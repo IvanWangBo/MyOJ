@@ -63,6 +63,14 @@
 
         </div>
     </div>
+		<!--if has permission-->
+		{% if show_push_btn %}
+			<div id="btn_push" class="row center-block" style="text-align:center;">
+				<a src="/contest/push_announce/"class="btn btn-default">发布比赛公告</a>
+			</div>
+		{% endif %}
+		<!--script window.location.href to push a new announcement -->
+	
 {% endblock %}
 
 {% block js_block %}

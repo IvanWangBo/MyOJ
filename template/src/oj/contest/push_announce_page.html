@@ -1,0 +1,23 @@
+{% extends 'oj_base.html' %}
+
+{% block body %}
+
+<!--TODO change width-->
+<div style="text-align:center; width:500px;" class="center-block">
+	<form class="form">
+		<div class="form-group">
+			<label for="announce_ID">比赛ID</label>
+			<input type="text" class="form-control" id="announce_ID" placeholder="比赛ID">
+		</div>
+		<div class="form-group">
+			<label for="announce_content">公告详情</label>
+			<textarea type="text" id="announce_content"></textarea>
+		</div>
+		<button type="button" class="btn btn-default" id="btn_push_announce">发送公告</button>
+	</form>
+</div>
+
+{% endblock %}
+{% block js_block %}
+<script src="/static/app/oj/contest/push_announce.js"></script>
+{% endblock %}

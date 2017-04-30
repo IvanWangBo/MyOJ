@@ -146,3 +146,15 @@ class ContestRank(models.Model):
                 info["error_number"] = 1
         self.submission_info[str(submission.problem_id)] = info
         self.save()
+
+
+
+#contest announcement
+class ContestAnnouncement(models.Model):
+    contest = models.ForeignKey(Contest)
+    content = models.CharField(max_length=10000)
+    push_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = "contest_announcement"
+
