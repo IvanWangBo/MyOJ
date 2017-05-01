@@ -13,7 +13,7 @@ from announcement.views import AnnouncementAdminAPIView
 
 from contest.views import (ContestAdminAPIView, ContestProblemAdminAPIView,
                            ContestPasswordVerifyAPIView, ContestTimeAPIView,
-                           MakeContestProblemPublicAPIView)
+                           MakeContestProblemPublicAPIView, PushAnnouncementAPIView)
 
 from group.views import (GroupAdminAPIView, GroupMemberAdminAPIView,
                          JoinGroupAPIView, JoinGroupRequestAdminAPIView, GroupPrometAdminAPIView)
@@ -75,6 +75,8 @@ urlpatterns = [
     url(r'^api/admin/submission/$', SubmissionAdminAPIView.as_view(), name="submission_admin_api_view"),
 
     url(r'^api/admin/judges/$', AdminJudgeServerAPIView.as_view(), name="judges_admin_api"),
+    #push announcement api
+    url(r'^api/push_contest_announcement/$', PushAnnouncementAPIView.as_view(), name="save_announcement_api"),
 
     url(r'^contest/(?P<contest_id>\d+)/problem/(?P<contest_problem_id>\d+)/$', "contest.views.contest_problem_page",
     #公告发布页面

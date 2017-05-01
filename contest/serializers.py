@@ -122,5 +122,3 @@ class PushAnnounceSerializer(serializers.Serializer):
     contest_id = serializers.IntegerField()
     content = serializers.CharField(max_length=10000)
 
-class ContestIDSerializer(serializers.Serializer):
-    id = serializers.IntegerField()

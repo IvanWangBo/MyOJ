@@ -29,7 +29,7 @@ from .decorators import check_user_contest_permission
 from .serializers import (CreateContestSerializer, ContestSerializer, EditContestSerializer,
                           CreateContestProblemSerializer, ContestProblemSerializer,
                           ContestPasswordVerifySerializer,
-                          EditContestProblemSerializer, PushAnnounceSerializer, ContestIDSerializer)
+                          EditContestProblemSerializer, PushAnnounceSerializer)
 
 
 class ContestAdminAPIView(APIView):
@@ -408,9 +408,22 @@ def contest_problems_list_page(request, contest_id):
         show_push_btn = True
     else:
         show_push_btn = False
+    announcement_content = ""
+    has_announcement = False
+    try:
+        AnnouncementList = ContestAnnouncement.objects.filter(contest=contest)
+        has_announcement = True
+        for ann in AnnouncementList:
+            announcement_content += ann.content
+            announcement_content += " , "
+    except AnnouncementList.DoesNotExist:
+        has_announcement = False
+        announcement_content = ""
     return render(request, "oj/contest/contest_problems_list.html", {"contest_problems": contest_problems,
                                                                      "contest": {"id": contest_id}},
-                                                                     "show_push_btn": show_push_btn)
+                                                                     "show_push_btn": show_push_btn,
+                                                                     "has_announcement": has_announcement,
+                                                                     "announcement_content": announcement_content)
 
 
 def contest_list_page(request, page=1):
@@ -646,7 +659,7 @@ class PushAnnouncementAPIView(APIView):
         发布公告json api接口
         数据存储起来
         """
-        if request.user.admin_type != SUPER_ADMIN:
+        if request.user.admin_type not in [ADMIN, SUPER_ADMIN]:
             return error_response(u"只有管理员才可以发布公告")
         else:
             serializer = PushAnnounceSerializer(data=request.data)
@@ -663,25 +676,4 @@ class PushAnnouncementAPIView(APIView):
                     return error_response(u"比赛ID错误，比赛不存在")
             else:
                 return serializer_invalid_response(serializer)
-
-#query if has announcement, if has, return; else return 'None'
-class HasAnnouncementAPIView(APIView):
-    @login_required
-    def post(self, request):
-        """
-        查询是否有比赛公告，有就显示出来
-        """
-        serializer = ContestIDSerializer(data=request.data)
-        if serializer.is_valid():
-            try:
-                contest = Contest.objects.get(id=data["id"])
-                try:
-                    AnnouncementList = ContestAnnouncement.objects.filter(contest=contest)
-                    return success_response(AnnouncementList)
-                except AnnouncementList.DoesNotExist:
-                    return success_response(u"暂无公告")
-            except contest.DoesNotExist:
-                return error_response(u"比赛ID错误，比赛不存在")
-        else:
-            return serializer_invalid_response(serializer)
 
