@@ -413,7 +413,7 @@ def contest_problems_list_page(request, contest_id):
         AnnouncementList = ContestAnnouncement.objects.get(contest=contest)
         has_announcement = True
         for ann in AnnouncementList:
-            announcement_content += ann
+            announcement_content += ann.content
             announcement_content += " , "
     except ContestAnnouncement.DoesNotExist:
         has_announcement = False
