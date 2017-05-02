@@ -409,13 +409,13 @@ def contest_problems_list_page(request, contest_id):
     else:
         show_push_btn = False
     announcement_content = ""
-    try:
-        AnnouncementList = ContestAnnouncement.objects.get(contest=contest)
+    AnnouncementList = ContestAnnouncement.objects.filter(contest=contest)
+    if AnnouncementList != []
         has_announcement = True
         for ann in AnnouncementList:
             announcement_content += ann.content
             announcement_content += " , "
-    except ContestAnnouncement.DoesNotExist:
+    else:
         has_announcement = False
     return render(request, "oj/contest/contest_problems_list.html", {"contest_problems": contest_problems,
                                                                      "contest": {"id": contest_id},
