@@ -408,15 +408,13 @@ def contest_problems_list_page(request, contest_id):
         show_push_btn = True
     else:
         show_push_btn = False
-    show_push_btn = True
-    announcement_content = "debuging"
-    """
+
+    announcement_content = ""
     AnnouncementList = ContestAnnouncement.objects.filter(contest=contest)
 
     for ann in AnnouncementList:
         announcement_content += ann.content
-        announcement_content += " , "
-    """
+        announcement_content += "   "
     return render(request, "oj/contest/contest_problems_list.html", {"contest_problems": contest_problems,
                                                                      "contest": {"id": contest_id},
                                                                      "show_push_btn": show_push_btn,
