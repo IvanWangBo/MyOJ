@@ -418,10 +418,10 @@ def contest_problems_list_page(request, contest_id):
     except ContestAnnouncement.DoesNotExist:
         has_announcement = False
     return render(request, "oj/contest/contest_problems_list.html", {"contest_problems": contest_problems,
-                                                                     "contest": {"id": contest_id}},
+                                                                     "contest": {"id": contest_id},
                                                                      "show_push_btn": show_push_btn,
                                                                      "has_announcement": has_announcement,
-                                                                     "announcement_content": announcement_content)
+                                                                     "announcement_content": announcement_content})
 
 
 def contest_list_page(request, page=1):
