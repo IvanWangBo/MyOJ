@@ -653,7 +653,7 @@ class PushAnnouncementAPIView(APIView):
         json api for save announcement
         """
         if request.user.admin_type not in [ADMIN, SUPER_ADMIN]:
-            return error_response[u"您无发布公告的权限"]
+            return error_response(u"您无发布公告的权限")
         else:
             serializer = PushAnnounceSerializer(data=request.data)
             if serializer.is_valid():
@@ -665,7 +665,7 @@ class PushAnnouncementAPIView(APIView):
                             content = data["content"]
                             )
                     return success_response(u"发送成功")
-                except contest.DoesNotExist:
+                except Contest.DoesNotExist:
                     return error_response(u"比赛ID错误，比赛不存在")
             else:
                 return serializer_invalid_response(serializer)
