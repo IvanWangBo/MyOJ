@@ -5,7 +5,7 @@ from django.utils import timezone
 import datetime
 from account.models import User
 from account.serializers import UserSerializer
-from .models import Contest, ContestProblem
+from .models import Contest, ContestProblem, ContestAnnouncement
 
 
 class CreateContestSerializer(serializers.Serializer):
@@ -117,3 +117,8 @@ class EditContestProblemSerializer(serializers.Serializer):
 class ContestPasswordVerifySerializer(serializers.Serializer):
     contest_id = serializers.IntegerField()
     password = serializers.CharField(max_length=30)
+
+class PushAnnounceSerializer(serializers.Serializer):
+    contest_id = serializers.IntegerField()
+    content = serializers.CharField(max_length=10000)
+

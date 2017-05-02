@@ -23,13 +23,13 @@ from utils.cache import get_cache_redis
 from submission.models import Submission
 from problem.models import Problem
 from .models import (Contest, ContestProblem, CONTEST_ENDED,
-                     CONTEST_NOT_START, CONTEST_UNDERWAY, ContestRank)
+                     CONTEST_NOT_START, CONTEST_UNDERWAY, ContestRank, ContestAnnouncement)
 from .models import GROUP_CONTEST, PUBLIC_CONTEST, PASSWORD_PROTECTED_CONTEST, PASSWORD_PROTECTED_GROUP_CONTEST
 from .decorators import check_user_contest_permission
 from .serializers import (CreateContestSerializer, ContestSerializer, EditContestSerializer,
                           CreateContestProblemSerializer, ContestProblemSerializer,
                           ContestPasswordVerifySerializer,
-                          EditContestProblemSerializer)
+                          EditContestProblemSerializer, PushAnnounceSerializer)
 
 
 class ContestAdminAPIView(APIView):
@@ -404,8 +404,24 @@ def contest_problems_list_page(request, contest_id):
     """
     contest = Contest.objects.get(id=contest_id)
     contest_problems = ContestProblem.objects.filter(contest=contest, visible=True).select_related("contest").order_by("sort_index")
+    if request.user.admin in [ADMIN, SUPER_ADMIN]:
+        show_push_btn = True
+    else:
+        show_push_btn = False
+    announcement_content = ""
+    try:
+        AnnouncementList = ContestAnnouncement.objects.get(contest=contest)
+        has_announcement = True
+        for ann in AnnouncementList:
+            announcement_content += ann
+            announcement_content += " , "
+    except ContestAnnouncement.DoesNotExist:
+        has_announcement = False
     return render(request, "oj/contest/contest_problems_list.html", {"contest_problems": contest_problems,
-                                                                     "contest": {"id": contest_id}})
+                                                                     "contest": {"id": contest_id}},
+                                                                     "show_push_btn": show_push_btn,
+                                                                     "has_announcement": has_announcement,
+                                                                     "announcement_content": announcement_content)
 
 
 def contest_list_page(request, page=1):
@@ -632,3 +648,28 @@ def contest_problem_submissions_list_page(request, contest_id, page=1):
                   {"submissions": submissions, "page": int(page),
                    "previous_page": previous_page, "next_page": next_page, "start_id": int(page) * 20 - 20,
                    "contest": contest, "filter": filter, "user_id": user_id, "problem_id": problem_id})
+
+
+class PushAnnouncementAPIView(APIView):
+    def post(self, request):
+        """
+        json api for save announcement
+        """
+        if request.user.admin_type not in [ADMIN, SUPER_ADMIN]:
+            return error_response[u"您无发布公告的权限"]
+        else:
+            serializer = PushAnnounceSerializer(data=request.data)
+            if serializer.is_valid():
+                data = serializer.data
+                try:
+                    contest = Contest.objects.get(id=data["contest_id"])
+                    contest_announcement = ContestAnnouncement.objects.create(
+                            contest = contest,
+                            content = data["content"]
+                            )
+                    return success_response(u"发送成功")
+                except contest.DoesNotExist:
+                    return error_response(u"比赛ID错误，比赛不存在")
+            else:
+                return serializer_invalid_response(serializer)
+

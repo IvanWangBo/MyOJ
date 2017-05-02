@@ -8,6 +8,13 @@
 
 
         <div class="row">
+		{% if has_announcement %}
+			<div class="col-lg-12 announcement">
+				<marquee direction=left id="anno" onmouseout=anno.start() onMouseOver=anno.stop() scrollamount=8>
+					{{ announcement_content }}
+				</marquee>
+			</div>
+		{% endif %}
             <div class="col-lg-12 contest-tab">
 
                 <ul class="nav nav-tabs nav-tabs-google">
@@ -63,6 +70,12 @@
 
         </div>
     </div>
+		{% if show_push_btn %}
+			<div id="btn_push" class="row center-block" style="text-align:center;">
+				<a src="/contest/push_announce/"class="btn btn-default">发布比赛公告</a>
+			</div>
+		{% endif %}
+	
 {% endblock %}
 
 {% block js_block %}
