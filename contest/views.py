@@ -404,7 +404,7 @@ def contest_problems_list_page(request, contest_id):
     """
     contest = Contest.objects.get(id=contest_id)
     contest_problems = ContestProblem.objects.filter(contest=contest, visible=True).select_related("contest").order_by("sort_index")
-    if request.user.admin in [ADMIN, SUPER_ADMIN]:
+    if request.user.admin_type in [ADMIN, SUPER_ADMIN]:
         show_push_btn = True
     else:
         show_push_btn = False
