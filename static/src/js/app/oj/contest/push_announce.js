@@ -12,16 +12,11 @@ require(["jquery", "bsAlert", "csrfToken", "validator"], function ($, bsAlert, c
 		var contest_id = $("#announce_ID").val();
 		var content = $("#announce_content").val();
 
-		re=/^//d+$/;
-
 		if(contest_id == ""){
 			bsAlert("请填写比赛ID");
 		}
 		else if(content == ""){
 			bsAlert("请填写公告内容");
-		}
-		else if(!re.test(contest_id)){
-			bsAlert("比赛ID不合法");
 		}
 		else{
 			$.ajax({
