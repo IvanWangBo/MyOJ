@@ -579,7 +579,7 @@ def contest_problem_my_submissions_list_page(request, contest_id, contest_proble
         order_by("-create_time"). \
         values("id", "result", "create_time", "accepted_answer_time", "language")
 
-        return render(request, "oj/submission/problem_my_submissions_list.html",
+    return render(request, "oj/submission/problem_my_submissions_list.html",
                   {"submissions": submissions, "problem": contest_problem})
 
 
