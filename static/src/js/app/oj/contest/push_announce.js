@@ -12,7 +12,7 @@ require(["jquery", "bsAlert", "csrfToken", "validator"], function ($, bsAlert, c
 		var contest_id = $("#announce_ID").val();
 		var content = $("#announce_content").val();
 
-		var re = /^//d+$/
+		var re = /^//d+$/;
 
 		if(contest_id == ""){
 			bsAlert("请填写比赛ID");
