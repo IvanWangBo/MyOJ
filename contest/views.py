@@ -587,8 +587,8 @@ def contest_problem_my_submissions_list_page(request, contest_id, contest_proble
         announcement_content += "   "
 
     return render(request, "oj/submission/problem_my_submissions_list.html",
-                  {"submissions": submissions, "problem": contest_problem},
-                  "announcement_content": announcement_content)
+                  {"submissions": submissions, "problem": contest_problem,
+                  "announcement_content": announcement_content})
 
 
 @check_user_contest_permission
