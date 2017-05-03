@@ -362,6 +362,11 @@ def contest_problem_page(request, contest_id, contest_problem_id):
         problem = ContestProblem.objects.get(id=contest_problem_id, visible=True)
     except ContestProblem.DoesNotExist:
         return error_page(request, u"比赛题目不存在")
+    announcement = ContestAnnouncement.objects.filter(contest=contest)
+    announcement_content = ""
+    for ann in announcement:
+        announcement_content += ann.content
+        announcement_content += '  '
     warning = u"您已经提交过本题的正确答案，重复提交可能造成时间累计。"
     show_warning = False
 
@@ -394,7 +399,8 @@ def contest_problem_page(request, contest_id, contest_problem_id):
                                                                "samples": json.loads(problem.samples),
                                                                "show_warning": show_warning,
                                                                "warning": warning,
-                                                               "show_submit_code_area": show_submit_code_area})
+                                                               "show_submit_code_area": show_submit_code_area,
+                                                               "announcement_content": announcement_content})
 
 
 @check_user_contest_permission
