@@ -1,9 +1,10 @@
 require(["jquery", "bsAlert", "csrfToken", "validator"], function ($, bsAlert, csrfTokenHeader) {
 
 	$("#announcement_form").width( $(window).width() * 0.75 );
-	$("#announce_content").width( $("#announcement_form") );
-	$("#announce_content").height( $("#announce_content") * 0.75 );
+	$("#announce_content").width( $("#announcement_form").width() );
+	$("#announce_content").height( $("#announce_content").width() * 0.75 );
 	$("#btn_push_announce").css("margin-bottom","5px");
+	$("#announcement_form").css("text-align","center");
 
 	var btn_push = $("#btn_push_announce");
 
