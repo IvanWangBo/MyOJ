@@ -12,25 +12,37 @@ require(["jquery", "bsAlert", "csrfToken", "validator"], function ($, bsAlert, c
 		var contest_id = $("#announce_ID").val();
 		var content = $("#announce_content").val();
 
-		$.ajax({
-			beforeSend: csrfTokenHeader,
-			url: "/api/push_contest_announcement/",
-			data: {contest_id:contest_id, content:content},
-			dataType: "json",
-			method: "post",
-			success: function (data) {
-				if(!data.code){
-					bsAlert(data.data);
-				}
-				else{
-					bsAlert(data.data);
-				}
-			},
-			error: function(){
-				bsAlert("额 好像出错了，请刷新页面重试。如还有问题，请填写页面导航栏上的反馈。")
-			}
+		var re = /^//d+$/
 
-		});
+		if(contest_id == ""){
+			bsAlert("请填写比赛ID");
+		}
+		else if(content == ""){
+			bsAlert("请填写公告内容");
+		}
+		else if(re.test(contest_id)){
+			bsAlert("比赛ID不合法");
+		}
+		else{
+			$.ajax({
+				beforeSend: csrfTokenHeader,
+				url: "/api/push_contest_announcement/",
+				data: {contest_id:contest_id, content:content},
+				dataType: "json",
+				method: "post",
+				success: function (data) {
+					if(!data.code){
+						bsAlert(data.data);
+					}
+					else{
+						bsAlert(data.data);
+					}
+				},
+				error: function(){
+					bsAlert("额 好像出错了，请刷新页面重试。如还有问题，请填写页面导航栏上的反馈。")
+				}
+
+			});
+		}
 	});
-
 });
