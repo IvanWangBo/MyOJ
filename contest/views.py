@@ -528,6 +528,13 @@ def contest_rank_page(request, contest_id):
                 rank = _get_rank(contest_id)
                 r.set(cache_key, json.dumps([dict(item) for item in rank]))
 
+    announcement_content = ""
+    AnnouncementList = ContestAnnouncement.objects.filter(contest=contest)
+
+    for ann in AnnouncementList:
+        announcement_content += ann.content
+        announcement_content += "   "
+
     return render(request, "oj/contest/contest_rank.html",
                   {"rank": rank,
                    "contest": contest,
@@ -535,7 +542,8 @@ def contest_rank_page(request, contest_id):
                    "contest_problems": contest_problems,
                    "auto_refresh": request.GET.get("auto_refresh", None) == "true",
                    "show_real_name": request.GET.get("show_real_name", None) == "true",
-                   "force_real_time_rank": force_real_time_rank})
+                   "force_real_time_rank": force_real_time_rank},
+                  "announcement_content": announcement_content)
 
 
 class ContestTimeAPIView(APIView):
@@ -570,8 +578,17 @@ def contest_problem_my_submissions_list_page(request, contest_id, contest_proble
     submissions = Submission.objects.filter(user_id=request.user.id, problem_id=contest_problem.id, contest_id=contest_id). \
         order_by("-create_time"). \
         values("id", "result", "create_time", "accepted_answer_time", "language")
+
+    announcement_content = ""
+    AnnouncementList = ContestAnnouncement.objects.filter(contest=contest)
+
+    for ann in AnnouncementList:
+        announcement_content += ann.content
+        announcement_content += "   "
+
     return render(request, "oj/submission/problem_my_submissions_list.html",
-                  {"submissions": submissions, "problem": contest_problem})
+                  {"submissions": submissions, "problem": contest_problem},
+                  "announcement_content": announcement_content)
 
 
 @check_user_contest_permission
