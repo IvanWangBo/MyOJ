@@ -542,8 +542,8 @@ def contest_rank_page(request, contest_id):
                    "contest_problems": contest_problems,
                    "auto_refresh": request.GET.get("auto_refresh", None) == "true",
                    "show_real_name": request.GET.get("show_real_name", None) == "true",
-                   "force_real_time_rank": force_real_time_rank},
-                  "announcement_content": announcement_content)
+                   "force_real_time_rank": force_real_time_rank,
+                  "announcement_content": announcement_content})
 
 
 class ContestTimeAPIView(APIView):
