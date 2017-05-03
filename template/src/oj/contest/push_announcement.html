@@ -3,15 +3,15 @@
 {% block body %}
 
 <!--TODO change width-->
-<div style="text-align:center;" class="center-block">
-	<form class="form" id="announcement_form">
+<div style="text-align:center;" class="center-block" id="announcement_form">
+	<form class="form" class="center-block">
 		<div class="form-group">
 			<label for="announce_ID">比赛ID</label>
 			<input type="text" class="form-control" id="announce_ID" placeholder="比赛ID">
 		</div>
 		<div class="form-group">
 			<label for="announce_content">公告内容</label>
-			<textarea type="text" id="announce_content" placeholder="公告内容" style="resize:none;"></textarea>
+			<textarea type="text" id="announce_content" placeholder="公告内容" style="resize:none; margin:0; padding:0;"></textarea>
 		</div>
 		<button type="button" class="btn btn-default" id="btn_push_announce">发送公告</button>
 	</form>
