@@ -579,16 +579,8 @@ def contest_problem_my_submissions_list_page(request, contest_id, contest_proble
         order_by("-create_time"). \
         values("id", "result", "create_time", "accepted_answer_time", "language")
 
-    announcement_content = ""
-    AnnouncementList = ContestAnnouncement.objects.filter(contest=contest)
-
-    for ann in AnnouncementList:
-        announcement_content += ann.content
-        announcement_content += "   "
-
-    return render(request, "oj/submission/problem_my_submissions_list.html",
-                  {"submissions": submissions, "problem": contest_problem,
-                  "announcement_content": announcement_content})
+        return render(request, "oj/submission/problem_my_submissions_list.html",
+                  {"submissions": submissions, "problem": contest_problem})
 
 
 @check_user_contest_permission
@@ -664,10 +656,18 @@ def contest_problem_submissions_list_page(request, contest_id, page=1):
         else:
             item["show_link"] = False
 
+    announcement_content = ""
+    AnnouncementList = ContestAnnouncement.objects.filter(contest=contest)
+
+    for ann in AnnouncementList:
+        announcement_content += ann.content
+        announcement_content += "   "
+
     return render(request, "oj/contest/submissions_list.html",
                   {"submissions": submissions, "page": int(page),
                    "previous_page": previous_page, "next_page": next_page, "start_id": int(page) * 20 - 20,
-                   "contest": contest, "filter": filter, "user_id": user_id, "problem_id": problem_id})
+                   "contest": contest, "filter": filter, "user_id": user_id, "problem_id": problem_id,
+                   "announcement_content": announcement_content})
 
 
 class PushAnnouncementAPIView(APIView):
