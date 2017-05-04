@@ -701,7 +701,7 @@ class PushAnnouncementAPIView(APIView):
             else:
                 return serializer_invalid_response(serializer)
 
-def push_contest_announcement(request, contest_id):
+def push_announcement_page(request, contest_id):
     """
     show push_announcement_page 
     """
