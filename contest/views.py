@@ -700,7 +700,7 @@ class PushAnnouncementAPIView(APIView):
                     return error_response(u"比赛ID错误，比赛不存在")
             else:
                 return serializer_invalid_response(serializer)
-@admin_required
+
 def push_contest_announcement(request, contest_id):
     """
     show push_announcement_page 
