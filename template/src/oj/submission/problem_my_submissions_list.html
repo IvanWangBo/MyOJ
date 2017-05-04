@@ -7,6 +7,12 @@
     {% load submission %}
 	<div class="container main">
 
+		<div class="col-lg-12 announcement">
+			<marquee direction="left" onMouseOut="this.start()" onMouseOver="this.stop()" scrollamount="8">
+				{{ announcement_content }}
+			</marquee>
+		</div>
+
 		<ul class="nav nav-tabs nav-tabs-google">
 			{% if problem.contest_id %}
 			<li role="presentation">

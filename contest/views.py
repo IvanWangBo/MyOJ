@@ -568,7 +568,7 @@ def contest_problem_my_submissions_list_page(request, contest_id, contest_proble
     我比赛单个题目的所有提交列表
     """
     try:
-        Contest.objects.get(id=contest_id)
+        contest = Contest.objects.get(id=contest_id)
     except Contest.DoesNotExist:
         return error_page(request, u"比赛不存在")
     try:
@@ -579,8 +579,16 @@ def contest_problem_my_submissions_list_page(request, contest_id, contest_proble
         order_by("-create_time"). \
         values("id", "result", "create_time", "accepted_answer_time", "language")
 
+    announcement_content = ""
+    AnnouncementList = ContestAnnouncement.objects.filter(contest=contest)
+
+    for ann in AnnouncementList:
+        announcement_content += ann.content
+        announcement_content += "   "
+
     return render(request, "oj/submission/problem_my_submissions_list.html",
-                  {"submissions": submissions, "problem": contest_problem})
+            {"submissions": submissions, "problem": contest_problem,
+                "announcement_content": announcement_content})
 
 
 @check_user_contest_permission
