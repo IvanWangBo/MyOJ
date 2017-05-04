@@ -28,7 +28,7 @@ from utils.views import SimditorImageUploadAPIView
 
 urlpatterns = [
     url(r'^api/push_contest_announcement/$', PushAnnouncementAPIView.as_view()),
-    url(r'^contest/push_announce/$', TemplateView.as_view(template_name="oj/contest/push_announcement.html")),
+    url(r'^contest/(?P<contest_id>\d+)/push_announce/$', "contest.views.push_announcement_page"),
     url("^$", "account.views.index_page", name="index_page"),
 
     url(r'^admin/$', TemplateView.as_view(template_name="admin/admin.html"), name="admin_spa_page"),
