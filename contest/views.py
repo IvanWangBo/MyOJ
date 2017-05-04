@@ -705,4 +705,4 @@ def push_announcement_page(request, contest_id):
     """
     show push_announcement_page 
     """
-    return render(request, "oj/content/push_announcement.html", {"contest_id": contest_id})
+    return render(request, "oj/contest/push_announcement.html", {"contest_id": contest_id})
