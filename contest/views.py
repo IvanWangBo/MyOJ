@@ -708,7 +708,7 @@ def push_announcement_page(request, contest_id):
     return render(request, "oj/contest/push_announcement.html", {"contest_id": contest_id})
 
 def DownloadContestCode(request, contest_id):
-local_url = r'/home/OnlineJudge/contest_code/' + str(contest_id) + '.txt'
+    local_url = r'/home/OnlineJudge/contest_code/' + str(contest_id) + '.txt'
     if not os.path.exists(local_url):
         file = open(local_url, 'a')
         submissions = Submission.objects.filter(contest_id=contest_id, result=0). \
@@ -719,13 +719,17 @@ local_url = r'/home/OnlineJudge/contest_code/' + str(contest_id) + '.txt'
                 this_username = user.username
             except User.DoesNotExist:
                 this_username = "none"
-            file.write("用户名： " + this_username + '\n')
-            file.write("提交id： " + sub.id + '\n')
-            file.write("提交状态：(0 为通过) " + sub.result + '\n')
-            file.write("通过时间： " + sub.create_time + '\n')
-            file.write("编程语言： " + sub.language + '\n')
+            file.write(u"用户名： " + this_username + '\n')
+            file.write(u"提交id： " + sub.id + '\n')
+            file.write(u"提交状态：(0 为通过) " + sub.result + '\n')
+            file.write(u"通过时间： " + sub.create_time + '\n')
+            file.write(u"编程语言： " + sub.language + '\n')
             file.write("code: " + '\n' + sub.code + '\n' + '\n')
-        return HttpResponse(file.read())
+            file.close()
+            with open(local_url) as now_file:
+                fileread = now_file.read()
+        return HttpResponse(fileread)
     else:
-        file = open(local_url)
-        return HttpResponse(file.read())
+        with open(local_url) as now_file:
+                fileread = now_file.read()
+        return HttpResponse(fileread)
