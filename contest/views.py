@@ -721,9 +721,7 @@ def DownloadContestCode(request, contest_id):
         except User.DoesNotExist:
             this_username = "none"
         txt_response.write(u"用户名： " + this_username + '\n')
-        txt_response.write(u"提交id： " + sub.id + '\n')
-        txt_response.write(u"提交状态：(0 为通过) " + sub.result + '\n')
-        txt_response.write(u"通过时间： " + sub.create_time + '\n')
-        txt_response.write(u"编程语言： " + sub.language + '\n')
+        txt_response.write(u"提交id： " + str(sub.id) + '\n')
+        txt_response.write(u"提交状态：(0 为通过) " + str(sub.result) + '\n')
         txt_response.write("code: " + '\n' + sub.code + '\n' + '\n')
     return HttpResponse(txt_response)
