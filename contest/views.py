@@ -713,7 +713,7 @@ def DownloadContestCode(request, contest_id):
     if not os.path.exists(local_url):
         file = open(local_url, 'a')
         submissions = Submission.objects.filter(contest_id=contest_id, result=0). \
-        order_by("-create_time").values("id", "user_id", "result", "create_time", "code", "language")
+                order_by("-create_time").values("id", "user_id", "result", "create_time", "code", "language")
         for sub in submissions:
             try:
                 user = User.objects.get(id=sub.user_id)
@@ -732,5 +732,5 @@ def DownloadContestCode(request, contest_id):
         return HttpResponse(fileread)
     else:
         with open(local_url) as now_file:
-                fileread = now_file.read()
+            fileread = now_file.read()
         return HttpResponse(fileread)
