@@ -1,6 +1,7 @@
 # coding=utf-8
 import json
 import os
+import sys
 import datetime
 import hashlib
 
@@ -711,7 +712,7 @@ def push_announcement_page(request, contest_id):
 def DownloadContestCode(request, contest_id):
     local_url = r'/home/OnlineJudge/contest_code/' + str(contest_id) + '.txt'
     if not os.path.exists(local_url):
-        file = open(local_url, 'a')
+        myfile = open(local_url, 'a')
         submissions = Submission.objects.filter(contest_id=contest_id, result=0). \
                 order_by("-create_time").values("id", "user_id", "result", "create_time", "code", "language")
         for sub in submissions:
@@ -720,13 +721,13 @@ def DownloadContestCode(request, contest_id):
                 this_username = user.username
             except User.DoesNotExist:
                 this_username = "none"
-            file.write(u"用户名： " + this_username + '\n')
-            file.write(u"提交id： " + sub.id + '\n')
-            file.write(u"提交状态：(0 为通过) " + sub.result + '\n')
-            file.write(u"通过时间： " + sub.create_time + '\n')
-            file.write(u"编程语言： " + sub.language + '\n')
-            file.write("code: " + '\n' + sub.code + '\n' + '\n')
-            file.close()
+            myfile.write(u"用户名： " + this_username + '\n')
+            myfile.write(u"提交id： " + sub.id + '\n')
+            myfile.write(u"提交状态：(0 为通过) " + sub.result + '\n')
+            myfile.write(u"通过时间： " + sub.create_time + '\n')
+            myfile.write(u"编程语言： " + sub.language + '\n')
+            myfile.write("code: " + '\n' + sub.code + '\n' + '\n')
+            myfile.close()
             with open(local_url) as now_file:
                 fileread = now_file.read()
         return HttpResponse(fileread)
