@@ -720,8 +720,8 @@ def DownloadContestCode(request, contest_id):
             this_username = user.username
         except User.DoesNotExist:
             this_username = "none"
-        txt_response.write(u"用户名： " + this_username + '\n')
-        txt_response.write(u"提交id： " + str(sub.id) + '\n')
-        txt_response.write(u"提交状态：(0 为通过) " + str(sub.result) + '\n')
-        txt_response.write("code: " + '\n' + sub.code + '\n' + '\n')
+        txt_response.write("用户名： " + this_username + '\n')
+        txt_response.write("提交id： " + str(sub.id) + '\n')
+        txt_response.write("提交状态：(0 为通过) " + str(sub.result) + '\n')
+        txt_response.write(sub.code + '\n' + '\n')
     return HttpResponse(txt_response)
