@@ -710,18 +710,20 @@ def push_announcement_page(request, contest_id):
     return render(request, "oj/contest/push_announcement.html", {"contest_id": contest_id})
 
 def DownloadContestCode(request, contest_id):
-    txt_response = open("code.txt", 'w')
-    submissions = Submission.objects.filter(contest_id=contest_id, result=0). \
-            order_by("-create_time").values("id", "user_id", "result", "create_time", "code", "language")
-    for sub in submissions:
-        try:
-            user = User.objects.get(id=sub.user_id)
-            this_username = user.username
-        except User.DoesNotExist:
-            this_username = "none"
-        txt_response.write("用户名： " + this_username + '\n')
-        txt_response.write("提交id： " + str(sub.id) + '\n')
-        txt_response.write("提交状态：(0 为通过) " + str(sub.result) + '\n')
-        txt_response.write(sub.code + '\n' + '\n')
-    response = txt_response.read()
-    return HttpResponse(response)
+    #txt_response = open("code.txt", 'w')
+    #submissions = Submission.objects.filter(contest_id=contest_id, result=0). \
+    #        order_by("-create_time").values("id", "user_id", "result", "create_time", "code", "language")
+    #for sub in submissions:
+    #    try:
+    #        user = User.objects.get(id=sub.user_id)
+    #        this_username = user.username
+    #    except User.DoesNotExist:
+    #        this_username = "none"
+    #    txt_response.write("用户名： " + this_username + '\n')
+    #    txt_response.write("提交id： " + str(sub.id) + '\n')
+    #    txt_response.write("提交状态：(0 为通过) " + str(sub.result) + '\n')
+    #    txt_response.write(sub.code + '\n' + '\n')
+    response = HttpResponse(mimetype='application/octet-stream')
+    response['Content-Disposition'] = 'attachment; filename=test.txt'
+    response.write("testtttttt")
+    return response
