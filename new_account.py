@@ -1,7 +1,6 @@
 # coding=utf-8
 from django.core.management.base import BaseCommand
 from account.models import User, REGULAR_USER, UserProfile
-from utils.shortcuts import rand_str
 
 
 class Command(BaseCommand):
@@ -18,7 +17,3 @@ class Command(BaseCommand):
             user.set_password(password)
             user.save()
             UserProfile.objects.create(user=user)
-            self.stdout.write(self.style.SUCCESS("Successfully created user.\n"
-                                                 "Username: %s\nPassword: %s\n"
-                                                 "Remember to change password and turn on two factors auth "
-                                                 "after installation." % (name, password)))
