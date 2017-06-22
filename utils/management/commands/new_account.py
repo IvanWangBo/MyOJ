@@ -16,7 +16,12 @@ class Command(BaseCommand):
             info = user.split(' ')
             name = info[0]
             password = info[1]
-            user = User.objects.create(username=name, real_name=name[9:], email=u"%s@oj.com" % name[:9], admin_type=REGULAR_USER)
-            user.set_password(password)
-            user.save()
-            UserProfile.objects.create(user=user)
+            try:
+                user = User.objects.get(username=name)
+                user.set_password(password)
+                user.save()
+            except User.DoesNotExist:
+                user = User.objects.create(username=name, real_name=name[9:], email=u"%s@oj.com" % name[:9], admin_type=REGULAR_USER)
+                user.set_password(password)
+                user.save()
+                UserProfile.objects.create(user=user)
