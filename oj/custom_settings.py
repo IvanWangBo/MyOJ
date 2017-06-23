@@ -4,9 +4,9 @@ import os
 
 WEBSITE_INFO = {"website_name": u"Beijing Forestry University Online Judge",
                 "website_name_shortcut": u"AcDay",
-                "website_footer": u"北京林业大学大学信息学院 <a href=\"http://www.miibeian.gov.cn/\">京ICP备233333号-1</a>",
+                "website_footer": u"北京林业大学大学信息学院 京ICP备17025039号",
                 # url结尾没有/
-                "url": u"http://your-domain-or-ip.com"}
+                "url": u"www.bjfuacm.com"}
 
 
 # https://github.com/QingdaoU/OnlineJudge/wiki/SMTP
