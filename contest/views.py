@@ -1,3 +1,14 @@
+#!/usr/bin/env python
+#coding:utf-8
+
+# **********************************************************
+# * Author        : fujinzhou
+# * Email         : 1445675350@qq.com
+# * Create time   : 2017-07-03 16:06
+# * Last modified : 2017-07-03 16:06
+# * Filename      : views.py
+# * Description   : 
+# **********************************************************
 # coding=utf-8
 import json
 import os
@@ -359,7 +370,8 @@ def contest_problem_page(request, contest_id, contest_problem_id):
     """
     contest = Contest.objects.get(id=contest_id)
     try:
-        problem = ContestProblem.objects.get(id=contest_problem_id, visible=True)
+        problem = ContestProblem.objects.get(contest=contest, id=contest_problem_id, visible=True)
+
     except ContestProblem.DoesNotExist:
         return error_page(request, u"比赛题目不存在")
     warning = u"您已经提交过本题的正确答案，重复提交可能造成时间累计。"
