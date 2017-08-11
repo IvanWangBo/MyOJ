@@ -420,7 +420,7 @@ def problem_list_page(request, page=1):
             return error_page(request, u"标签不存在")
         problems = tag.problem_set.all().filter(visible=True)
 
-    paginator = Paginator(problems, 40)
+    paginator = Paginator(problems, 100)
     length = paginator.count
     try:
         current_page = paginator.page(int(page))
