@@ -1,2 +1,2 @@
-#   MyOJ
+# MyOJ
 #Ivan
