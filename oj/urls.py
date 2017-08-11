@@ -77,8 +77,7 @@ urlpatterns = [
     url(r'^api/admin/judges/$', AdminJudgeServerAPIView.as_view(), name="judges_admin_api"),
 
     url(r'^contest/(?P<contest_id>\d+)/problem/(?P<contest_problem_id>\d+)/$', "contest.views.contest_problem_page",
-    #公告发布页面
-    url(r'^contest/push_announce/$", TemplateView.as_view(template_name="oj/contest/push_announce_page.html")),
+        name="contest_problem_page"),
     url(r'^contest/(?P<contest_id>\d+)/problem/(?P<contest_problem_id>\d+)/submissions/$',
         "contest.views.contest_problem_my_submissions_list_page",
         name="contest_problem_my_submissions_list_page"),
