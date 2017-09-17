@@ -448,3 +448,69 @@ def problem_list_page(request, page=1):
                    "previous_page": previous_page, "next_page": next_page,
                    "keyword": keyword, "tag": tag_text,
                    "tags": tags, "difficulty_order": difficulty_order, "length": length})
+
+def structure_list_page(request, page=1):
+    """
+    前台的问题列表
+    """
+    # 正常情况
+    problems = Problem.objects.filter(visible=True)
+
+    # 搜索的情况
+    keyword = request.GET.get("keyword", "").strip()
+    if keyword:
+        problems = problems.filter(Q(title__contains=keyword) | Q(description__contains=keyword))
+
+    difficulty_order = request.GET.get("order_by", None)
+    if difficulty_order:
+        if difficulty_order[0] == "-":
+            problems = problems.order_by("-difficulty")
+            difficulty_order = "difficulty"
+        else:
+            problems = problems.order_by("difficulty")
+            difficulty_order = "-difficulty"
+    else:
+        difficulty_order = "difficulty"
+
+    # 右侧标签列表 按照关联的题目的数量排序 排除题目数量为0的
+    tags = ProblemTag.objects.annotate(problem_number=Count("problem")).filter(problem_number__gt=0).order_by(
+        "-problem_number")
+
+    # 按照标签筛选
+    tag_text = u'数据结构'
+    if tag_text:
+        try:
+            tag = ProblemTag.objects.get(name=tag_text)
+        except ProblemTag.DoesNotExist:
+            problems = []
+            return render(request, "oj/problem/structure.html",
+                          {"problems": problems, "page": int(page),
+                           "previous_page": None, "next_page": None,
+                           "keyword": keyword, "tag": tag_text,
+                           "tags": [], "difficulty_order": difficulty_order, "length": 0})
+        problems = tag.problem_set.all().filter(visible=True)
+
+    paginator = Paginator(problems, 100)
+    length = paginator.count
+    try:
+        current_page = paginator.page(int(page))
+    except Exception:
+        return error_page(request, u"不存在的页码")
+
+    previous_page = next_page = None
+
+    try:
+        previous_page = current_page.previous_page_number()
+    except Exception:
+        pass
+
+    try:
+        next_page = current_page.next_page_number()
+    except Exception:
+        pass
+
+    return render(request, "oj/problem/structure.html",
+                  {"problems": current_page, "page": int(page),
+                   "previous_page": previous_page, "next_page": next_page,
+                   "keyword": keyword, "tag": tag_text,
+                   "tags": tags, "difficulty_order": difficulty_order, "length": length})
