@@ -72,18 +72,22 @@
             position: relative;
         }
 
-        .section h1 {
+        .section h2 {
             font-size: 60px;
         }
 
-        .section h2 {
+        .section h1 {
             font-size: 36px;
             margin-top: 350px;
         }
 
         .section h3 {
-            font-size: 30px;
-            font-weight: normal;
+            font-size: 36px;
+            margin-top: 530px;
+            -webkit-text-stroke-width: 2px;
+            -webkit-text-stroke-color: #696962;
+            text-align: center;
+            background-color: #2e5039;
         }
 
         .bottom-pointer {
@@ -104,11 +108,6 @@
             text-align: center;
         }
 
-        .section-text_3 {
-            text-align: center;
-            background-color: #2e5039;
-        }
-
         .icon {
             max-height: 300px;
             max-width: 300px;
@@ -125,14 +124,14 @@
             padding: 0 0 0 0;
         }
 
-        #section2{
+        #section3{
             background-image: url(/static/img/index/bg/football.jpg);
             background-size:100% 100%;
             -moz-background-size:100% 100%;
             padding: 0 0 0 0;
         }
 
-        #section3_text{
+        #section3 div{
             font-size: 36px;
             margin-top: 530px;
             -webkit-text-stroke-width: 2px;
@@ -182,7 +181,7 @@
 <div id="fullpage">
     <div class="section" id="section0">
         <div class="index-section-text animated bounceInUp">
-            <h2>{% show_website_info "website_name" %}</h2>
+            <h1>{% show_website_info "website_name" %}</h1>
         </div>
         <div class="bottom-pointer">↓继续滚动~</div>
     </div>
@@ -191,16 +190,14 @@
         <div class="section-text">
             <img class="icon" id="img1" src="/static/img/index/a.png">
 
-            <h1>北京林业大学 ACM 集训队</h1>
+            <h2>北京林业大学 ACM 集训队</h2>
 
-            <h3>扬帆起航~</h3>
         </div>
 
     </div>
-    <div class="section" id="section2">
-
-        <div class="section-text_3">
-            <h1 class="section3_text">北京林业大学信息学院足球队</h1>
+    <div class="section" id="section3">
+        <div class="section-text">
+            <h3>北京林业大学信息学院足球队</h3>
         </div>
     </div>
     <div class="section" id="section3">
@@ -208,9 +205,8 @@
         <div class="section-text">
             <img class="icon" id="img3" src="/static/img/index/wanganlei.png">
 
-            <h1>王安磊，男, 招亲中~~~~</h1>
+            <h4>王安磊，男, 招亲中~~~~</h4>
 
-            <h3></h3>
         </div>
     </div>
 </div>
