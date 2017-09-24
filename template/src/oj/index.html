@@ -15,18 +15,20 @@
         }
 
         a {
-            text-decoration: none;
-            color: #FFF;
+                text-decoration: none;
+                font-size: 18px;
+                color: rgb(236, 236, 228);
+                background-color: rgba(11, 60, 24, 0);
         }
 
         #header {
             position: fixed;
-            height: 30px;
+            height: 70px;
             display: block;
             width: 100%;
-            background: transparent;
+            background: rgba(51, 5, 5, 0.6);
             z-index: 10;
-            padding: 20px 20px 0 20px;
+            padding: 10px 30px 0 20px;
         }
 
         #login {
@@ -62,6 +64,8 @@
         #name {
             font-size: 45px;
             margin-right: 20px;
+            -webkit-text-stroke-width: 2px;
+            -webkit-text-stroke-color: #34b372;
         }
 
         .section {
@@ -70,6 +74,11 @@
 
         .section h1 {
             font-size: 60px;
+        }
+
+        .section h2 {
+            font-size: 36px;
+            margin-top: 350px;
         }
 
         .section h3 {
@@ -159,8 +168,6 @@
     <div class="section" id="section0">
         <div class="index-section-text animated bounceInUp">
             <h1>{% show_website_info "website_name" %}</h1>
-
-            <h3>新的面貌，新的开始~</h3>
         </div>
         <div class="bottom-pointer">↓继续滚动~</div>
     </div>
