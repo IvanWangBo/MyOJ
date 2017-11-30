@@ -21,7 +21,7 @@ class Command(BaseCommand):
                 user.set_password(password)
                 user.save()
             except User.DoesNotExist:
-                user = User.objects.create(username=name, real_name=name[9:], email=u"%s@oj.com" % name[:9], admin_type=REGULAR_USER)
+                user = User.objects.create(username=name, real_name=name[8:], email=u"bjfu_2017_news_acmer@oj.com", admin_type=REGULAR_USER)
                 user.set_password(password)
                 user.save()
                 UserProfile.objects.create(user=user)
