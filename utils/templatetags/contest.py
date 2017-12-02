@@ -33,6 +33,15 @@ def get_the_formatted_time(seconds):
     #second = seconds - hour * 60 * 60 - minute * 60
     #return str(hour) + ":" + str(minute) + ":" + str(second)
 
+def get_rank(rank, max_number):
+    if max_number > 10:
+        if rank == 1:
+            return '冠'
+        elif rank == 2:
+            return '亚'
+        elif rank == 3:
+            return '季'
+    return rank
 
 def get_medal_class(item, max_number):
     number = max_number
@@ -132,4 +141,5 @@ register.filter("format_seconds", get_the_formatted_time)
 register.simple_tag(get_submission_class, name="get_submission_class")
 register.simple_tag(get_medal_class, name="get_medal_class")
 register.simple_tag(get_submission_content, name="get_submission_content")
+register.simple_tag(get_rank, name="get_rank")
 register.filter("accepted_radio", get_problem_accepted_radio)

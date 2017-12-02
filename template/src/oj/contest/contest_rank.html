@@ -87,7 +87,7 @@
                             <tr>
                                 <th class="text-center{% get_medal_class item max_number%}" scope="row">
                                     {% if item.rank_number %}
-                                        {{ item.rank_number }}
+                                        {% get_rank item.rank_number max_number%}
                                     {% else %}
                                         -
                                     {% endif %}
