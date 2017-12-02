@@ -149,13 +149,13 @@ li.problem-tag {
 }
 
 .champion{
-    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=red,endcolorstr=#ffd700,gradientType=1);
+    background: linear-gradient(to right, red, orange, yellow, silver, orange, red);
 }
 .second_place{
-    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#ffd700,endcolorstr=#C0C0C0,gradientType=1);
+    background: linear-gradient(to right, silver, yellow, silver)
 }
 .third_place{
-    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#C0C0C0,endcolorstr=#c08E55,gradientType=1);
+    background: linear-gradient(to right, #c08E55, orange, #c08E55)
 }
 
 .gold{
