@@ -148,6 +148,16 @@ li.problem-tag {
     margin: 0!important;
 }
 
+.champion{
+    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=red,endcolorstr=#ffd700,gradientType=1);
+}
+.second_place{
+    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#ffd700,endcolorstr=#C0C0C0,gradientType=1);
+}
+.third_place{
+    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#C0C0C0,endcolorstr=#c08E55,gradientType=1);
+}
+
 .gold{
     background-color: #ffd700;
 }

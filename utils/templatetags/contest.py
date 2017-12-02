@@ -71,11 +71,17 @@ def get_medal_class(item, max_number):
             return ' bronze'
         else:
             return ' no_medal'
-    elif item_number * 1.0 <= number * 0.1:
+    elif item_number == 1:
+        return ' champion'
+    elif item_number == 2:
+        return ' second_place'
+    elif item_number == 3:
+        return ' third_place'
+    elif item_number * 1.0 <= number * 0.1 + 3:
         return ' gold'
-    elif item_number * 1.0 <= number * 0.3:
+    elif item_number * 1.0 <= number * 0.3 + 3:
         return ' silver'
-    elif item_number * 1.0 <= number * 0.6:
+    elif item_number * 1.0 <= number * 0.6 + 3:
         return ' bronze'
     else:
         return ' no_medal'
