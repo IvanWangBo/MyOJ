@@ -149,13 +149,13 @@ li.problem-tag {
 }
 
 .champion{
-    background: linear-gradient(to right, red, orange, yellow, silver, orange, red);
+    background: linear-gradient(to right, red, orange, yellow, white, yellow, orange, red);
 }
 .second_place{
-    background: linear-gradient(to right, silver, yellow, silver)
+    background: linear-gradient(to right, white, silver, yellow, orange, yellow, silver, white)
 }
 .third_place{
-    background: linear-gradient(to right, #c08E55, orange, #c08E55)
+    background: linear-gradient(to right, #c08E55, orange, yellow, orange, #c08E55)
 }
 
 .gold{
