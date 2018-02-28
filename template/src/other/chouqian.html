@@ -1,28 +1,78 @@
 <span style="font-size:18px;">
+    <meta charset="utf-8">
 <HTML>
 <HEAD>
  <TITLE>抽签 </TITLE>
+    <style type="text/css">
+     .button_begin {
+        width: 200px;
+        padding:8px;
+        background-color: #5bff54;
+        color: #fff;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px; /* future proofing */
+        -khtml-border-radius: 10px; /* for old Konqueror browsers */
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid transparent;
+        font-weight: 900;
+        font-size:125%
+      }
+     .button_end {
+        width: 200px;
+        padding:8px;
+        background-color: #ff252c;
+        color: #fff;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px; /* future proofing */
+        -khtml-border-radius: 10px; /* for old Konqueror browsers */
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid transparent;
+        font-weight: 900;
+        font-size:125%
+      }
+   </style>
  <SCRIPT LANGUAGE="JavaScript">
 var names = [
+    "抱抱",
     "小裙子",
+    "抱抱",
     "老北京炸鸡腿",
+    "亲亲",
     "亲亲",
     "抱抱",
     "啪啪啪",
+    "亲亲",
     "小内裤",
+    "举高高",
     "小胸罩",
+    "抱抱",
     "小袜子",
+    "亲亲",
     "001避孕套",
     "003避孕套",
-    "震动棒",
     "烤羊腿",
     "口红",
+    "举高高",
+    "抱抱",
     "包包",
+    "亲亲",
+    "举高高",
     "化妆品",
+    "亲亲",
     "老北京酸奶",
     "粉底",
-    "香港迪士尼",
-    ""
+    "亲亲",
+    "抱抱",
+    "举高高",
+    "举高高",
+    "看电影",
+    "逛街",
+    "泡澡",
+    "做一顿大餐"
 ];
 var time;
 function begin() {
@@ -40,15 +90,19 @@ function end() {
     document.getElementById("btnBegin").disabled = false;
 }
  </SCRIPT>
-    <meta charset="utf-8">
+
 </HEAD>
 
 <BODY>
 <div style="text-align:center;margin-top:100px">
 <h1>小悦悦的奖励</h1>
-<h3 id="result" style="color:blue; font-size: 100px"></h3>
-<INPUT TYPE="button" VALUE="开始" id="btnBegin" ONCLICK="begin();">
-<INPUT TYPE="button" VALUE="结束" id="btnEnd" ONCLICK="end();">
+<h3 id="result" style="color:#0cfff7; font-size: 100px"></h3>
+    <button class="button_begin" onclick="begin()" id="btnBegin">
+    开始
+    </button>
+    <button class="button_end" onclick="end()" id="btnBegin">
+    结束
+    </button>
 </div>
 </BODY>
 </HTML></span>
