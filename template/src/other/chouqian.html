@@ -1,0 +1,54 @@
+<span style="font-size:18px;">
+<HTML>
+<HEAD>
+ <TITLE>抽签 </TITLE>
+ <SCRIPT LANGUAGE="JavaScript">
+var names = [
+    "小裙子",
+    "老北京炸鸡腿",
+    "亲亲",
+    "抱抱",
+    "啪啪啪",
+    "小内裤",
+    "小胸罩",
+    "小袜子",
+    "001避孕套",
+    "003避孕套",
+    "震动棒",
+    "烤羊腿",
+    "口红",
+    "包包",
+    "化妆品",
+    "老北京酸奶",
+    "粉底",
+    "香港迪士尼",
+    ""
+];
+var time;
+function begin() {
+    document.getElementById("btnBegin").disabled = true;
+    chouqian();
+}
+function chouqian() {
+    var index = Math.floor(Math.random() * 1000 % names.length);
+    var name = names[index];
+    document.getElementById("result").innerHTML = name;
+    time = window.setTimeout(chouqian, 2);
+}
+function end() {
+    window.clearTimeout(time);
+    document.getElementById("btnBegin").disabled = false;
+}
+ </SCRIPT>
+    <meta charset="utf-8">
+</HEAD>
+
+<BODY>
+<div style="text-align:center;margin-top:100px">
+<h1>小悦悦的奖励</h1>
+<h3 id="result" style="color:blue; font-size: 100px"></h3>
+<INPUT TYPE="button" VALUE="开始" id="btnBegin" ONCLICK="begin();">
+<INPUT TYPE="button" VALUE="结束" id="btnEnd" ONCLICK="end();">
+</div>
+</BODY>
+</HTML></span>
