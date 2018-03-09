@@ -148,6 +148,6 @@ urlpatterns = [
     url(r'^rank/(?P<page>\d+)/$', "account.views.user_rank_page", name="user_rank_page"),
     url(r'^rank/$', "account.views.user_rank_page", name="user_rank_page"),
     url(r'^api/avatar/upload/', AvatarUploadAPIView.as_view(), name="avatar_upload_api"),
-    url(r'^woaixiaoyueyue/', TemplateView.as_view(template_name="other/chouqian.html"), name="chouqian"),
-    url(r'^woaixiaoyueyue/', TemplateView.as_view(template_name="other/fireworks.html"), name="fireworks"),
+    url(r'^woaixiaoyueyue/chouqian/$', TemplateView.as_view(template_name="other/chouqian.html"), name="chouqian"),
+    url(r'^woaixiaoyueyue/fireworks/$', TemplateView.as_view(template_name="other/fireworks.html"), name="fireworks"),
 ]
