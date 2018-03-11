@@ -150,5 +150,5 @@ urlpatterns = [
     url(r'^api/avatar/upload/', AvatarUploadAPIView.as_view(), name="avatar_upload_api"),
     url(r'^woaixiaoyueyue/chouqian/$', TemplateView.as_view(template_name="other/chouqian.html"), name="chouqian"),
     url(r'^woaixiaoyueyue/fireworks/$', TemplateView.as_view(template_name="other/fireworks.html"), name="fireworks"),
-    url(r'^woaixiaoyueyue/fireworks2/$', TemplateView.as_view(template_name="other/"), name="fireworks2"),
+    url(r'^woaixiaoyueyue/fireworks2/$', TemplateView.as_view(template_name="other/fireworks2.html"), name="fireworks2"),
 ]
