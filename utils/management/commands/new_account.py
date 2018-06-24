@@ -8,20 +8,21 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         reload(sys)
         sys.setdefaultencoding('utf-8')
-        with open('password', 'r') as users:
+        with open('cpp201834', 'r') as users:
             users = users.read()
             user_list = users.split('\n')
 
         for user in user_list:
             info = user.split(' ')
-            name = info[0]
-            password = info[1]
+            name = info[0].strip()
+            password = info[1].strip()
             try:
                 user = User.objects.get(username=name)
                 user.set_password(password)
                 user.save()
             except User.DoesNotExist:
-                user = User.objects.create(username=name, real_name=name[8:], email=u"bjfu_2017_news_acmer@oj.com", admin_type=REGULAR_USER)
+                user = User.objects.create(username=name, real_name=name[8:], email=u"bjfu_2018_cpp@oj.com", admin_type=REGULAR_USER)
                 user.set_password(password)
                 user.save()
                 UserProfile.objects.create(user=user)
+            print name, password
