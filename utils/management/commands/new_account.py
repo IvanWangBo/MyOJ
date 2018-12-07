@@ -16,6 +16,7 @@ class Command(BaseCommand):
                 user_list = users.split('\n')
         except:
             self.stdout.write(self.style.WARNING("Can not find file: %s" % file_name))
+            exit(1)
 
         for user in user_list:
             info = user.split(' ')
