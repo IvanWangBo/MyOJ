@@ -8,7 +8,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         reload(sys)
         sys.setdefaultencoding('utf-8')
-        with open('cpp2018xx12', 'r') as users:
+        with open('2018new', 'r') as users:
             users = users.read()
             user_list = users.split('\n')
 
