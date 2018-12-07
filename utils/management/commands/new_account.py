@@ -18,6 +18,7 @@ class Command(BaseCommand):
             self.stdout.write(self.style.WARNING("Can not find file: %s" % file_name))
             exit(1)
 
+        self.stdout.write(self.style.SUCCESS("Begining..."))
         for user in user_list:
             info = user.split(' ')
             name = info[0].strip()
@@ -32,3 +33,4 @@ class Command(BaseCommand):
                 user.save()
                 UserProfile.objects.create(user=user)
             print name, password
+        self.stdout.write(self.style.SUCCESS("Done, total %s users" % len(user_list)))
