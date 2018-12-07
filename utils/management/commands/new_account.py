@@ -8,9 +8,14 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         reload(sys)
         sys.setdefaultencoding('utf-8')
-        with open('2018new', 'r') as users:
-            users = users.read()
-            user_list = users.split('\n')
+        self.stdout.write(self.style.WARNING("Please enter account file name:"))
+        file_name = raw_input()
+        try:
+            with open(file_name, 'r') as users:
+                users = users.read()
+                user_list = users.split('\n')
+        except:
+            self.stdout.write(self.style.WARNING("Can not find file: %s" % file_name))
 
         for user in user_list:
             info = user.split(' ')
